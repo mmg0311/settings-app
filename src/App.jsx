@@ -1,5 +1,17 @@
 import React from "react";
 
-const App = () => <div>Hello World</div>;
+import Header from "./sections/Header";
+import Sidebar from "./sections/Sidebar";
+import Main from "./sections/Main";
+
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <Sidebar />
+      <Main />
+    </div>
+  );
+};
 
 export default App;
