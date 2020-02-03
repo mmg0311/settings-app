@@ -1,5 +1,8 @@
 import React from "react";
 
+// Components
+import { Tabs } from "../../components";
+
 // Styled
 import { StyledHeader, StyledMenu } from "./styled";
 
@@ -12,6 +15,7 @@ const Header = ({ toggleSidebar }) => {
       <StyledMenu onClick={() => toggleSidebar(visible => !visible)}>
         <MenuIcon color="#000" size="24" />
       </StyledMenu>
+      <Tabs />
     </StyledHeader>
   );
 };
