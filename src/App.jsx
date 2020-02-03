@@ -9,10 +9,11 @@ import Main from "./sections/Main";
 import { StyledWrapper } from "./styled";
 
 const App = () => {
+  const [isSidebarVisible, toggleSidebar] = React.useState(false);
   return (
     <StyledWrapper>
-      <Header />
-      <Sidebar />
+      <Header toggleSidebar={toggleSidebar} />
+      <Sidebar visible={isSidebarVisible} />
       <Main />
     </StyledWrapper>
   );

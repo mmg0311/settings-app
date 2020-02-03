@@ -1,5 +1,10 @@
 import React from "react";
 
-const Sidebar = () => <aside>Sidebar</aside>;
+// Styled
+import { StyledSidebar } from "./styled";
+
+const Sidebar = ({ visible }) => {
+  return <StyledSidebar visible={visible}>Sidebar</StyledSidebar>;
+};
 
 export default Sidebar;
