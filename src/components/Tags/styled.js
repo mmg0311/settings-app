@@ -7,11 +7,11 @@ export const StyledTags = styled.div`
 export const StyledTag = styled.div`
    height: 24px;
    padding: 0 4px;
-   color: #9a2bd8;
+   color: #908996;
    font-size: 14px;
    line-height: 24px;
    margin-right: 4px;
    border-radius: 4px;
-   background: #f6e6ff;
-   border: 1px solid #dfcbea;
+   background: #f2f1f3;
+   border: 1px solid #dcdbdc;
 `
