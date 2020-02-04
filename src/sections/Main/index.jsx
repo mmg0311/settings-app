@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react'
+
+// State
+import { Context } from '../../store/tabs'
+
+// Views
+import { Home } from '../../views'
 
 const Main = () => {
-  return <main>Main</main>;
-};
+   const { state } = React.useContext(Context)
+   if (state.listings.length === 0 && state.forms.length === 0) return <Home />
+}
 
-export default Main;
+export default Main
