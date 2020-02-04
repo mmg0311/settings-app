@@ -3,9 +3,12 @@ import React from 'react'
 const Context = React.createContext()
 
 const state = {
-   listings: [{ type: 'listing', title: 'Apps Listing', view: 'apps' }],
+   listings: [
+      { type: 'listing', title: 'Apps', view: 'apps' },
+      { type: 'listing', title: 'Roles', view: 'roles' },
+   ],
    forms: [],
-   current: { type: 'listing', title: 'Apps Listing', view: 'apps' },
+   current: { type: 'listing', title: 'Roles', view: 'roles' },
 }
 
 const reducers = (state, { type, payload }) => {
