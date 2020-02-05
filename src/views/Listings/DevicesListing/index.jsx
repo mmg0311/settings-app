@@ -1,6 +1,7 @@
 import React from 'react'
 
 // Components
+import { ButtonGroup, IconButton } from '@dailykit/ui'
 import {
    Table,
    TableHead,
@@ -15,6 +16,9 @@ import {
 
 // Styled
 import { StyledWrapper } from '../styled'
+
+// Icons
+import { EditIcon, DeleteIcon } from '../../../assets/icons'
 
 const DevicesListing = () => {
    const data = [
@@ -42,6 +46,7 @@ const DevicesListing = () => {
                   <TableCell>Devices</TableCell>
                   <TableCell>Stations</TableCell>
                   <TableCell>Users Assigned</TableCell>
+                  <TableCell align="right">Actions</TableCell>
                </TableRow>
             </TableHead>
             <TableBody>
@@ -61,6 +66,16 @@ const DevicesListing = () => {
                               <Avatar key={user.title} title={user.title} />
                            ))}
                         </AvatarGroup>
+                     </TableCell>
+                     <TableCell align="right">
+                        <ButtonGroup align="right">
+                           <IconButton type="outline">
+                              <EditIcon />
+                           </IconButton>
+                           <IconButton type="outline">
+                              <DeleteIcon />
+                           </IconButton>
+                        </ButtonGroup>
                      </TableCell>
                   </TableRow>
                ))}

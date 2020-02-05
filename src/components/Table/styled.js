@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const StyledTable = styled.table`
    width: 100%;
@@ -31,8 +31,14 @@ export const StyledTableBody = styled.tbody`
 export const StyledTableRow = styled.tr`
    display: table-row;
 `
-export const StyledTableCell = styled.td`
-   padding: 0 12px;
-   display: table-cell;
-   border-bottom: 1px solid #d8d8d8;
-`
+export const StyledTableCell = styled.td(
+   ({ align }) => css`
+      padding: 0 12px;
+      display: table-cell;
+      border-bottom: 1px solid #d8d8d8;
+      text-align: ${align === 'right' ? align : 'left'};
+      > div {
+         float: ${align === 'right' ? align : 'left'};
+      }
+   `
+)

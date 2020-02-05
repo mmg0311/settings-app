@@ -1620,6 +1620,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@dailykit/ui@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@dailykit/ui/-/ui-0.2.10.tgz#d127b5baacaab8a597a0c2eb2fc7a07fbf498b79"
+  integrity sha512-aeZOsdwf/ioM6Z7BL5XAX6fj6mPeYsovLVvHpXXUAKYmjMrqt59lNmWKGbRzwxSgQUA0ANtJnOz5FdCXjIzYhQ==
+
 "@emotion/is-prop-valid@^0.8.3":
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.6.tgz#4757646f0a58e9dec614c47c838e7147d88c263c"
