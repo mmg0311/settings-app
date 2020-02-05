@@ -11,10 +11,10 @@ import {
    Tag,
    AvatarGroup,
    Avatar,
-} from '../../components'
+} from '../../../components'
 
 // Styled
-import { StyledWrapper, StyledIcon } from './styled'
+import { StyledWrapper, StyledIcon } from '../styled'
 
 const AppsListing = () => {
    const data = [

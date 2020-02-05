@@ -1,7 +1,9 @@
 import Home from './Home'
-import AppsListing from './AppsListing'
-import RolesListing from './RolesListing'
-import UsersListing from './UsersListing'
-import DevicesListing from './DevicesListing'
+import {
+   AppsListing,
+   RolesListing,
+   UsersListing,
+   DevicesListing,
+} from './Listings'
 
 export { Home, AppsListing, RolesListing, UsersListing, DevicesListing }

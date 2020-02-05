@@ -11,10 +11,10 @@ import {
    Avatar,
    Tags,
    Tag,
-} from '../../components'
+} from '../../../components'
 
 // Styled
-import { StyledWrapper, StyledIconGroup } from './styled'
+import { StyledWrapper } from '../styled'
 
 const DevicesListing = () => {
    const data = [

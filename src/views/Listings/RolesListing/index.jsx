@@ -7,31 +7,28 @@ import {
    TableBody,
    TableRow,
    TableCell,
+   AvatarGroup,
    Avatar,
-   Tags,
-   Tag,
-} from '../../components'
+} from '../../../components'
 
 // Styled
-import { StyledWrapper, StyledIconGroup, StyledIcon } from './styled'
+import { StyledWrapper, StyledIconGroup, StyledIcon } from '../styled'
 
-const UsersListing = () => {
+const RolesListing = () => {
    const data = [
       {
-         user: {
-            name: 'Marky Mark',
-            imageUrl: '',
-         },
+         role: 'Admin',
          apps: ['', '', ''],
-         roles: ['Admin', 'Chef'],
+         users: [
+            { title: 'Jack' },
+            { title: 'Back Bones' },
+            { title: 'Stack Cue Stones' },
+         ],
       },
       {
-         user: {
-            name: 'Alex Tod',
-            imageUrl: '',
-         },
+         role: 'Operator',
          apps: ['', ''],
-         roles: ['Admin', 'Moderator'],
+         users: [{ title: 'Stack Cue Stones' }, { title: 'Back Bones' }],
       },
    ]
    return (
@@ -40,17 +37,15 @@ const UsersListing = () => {
          <Table>
             <TableHead>
                <TableRow>
-                  <TableCell>Users</TableCell>
-                  <TableCell>Apps Configured</TableCell>
                   <TableCell>Roles</TableCell>
+                  <TableCell>Apps Configured</TableCell>
+                  <TableCell>Users Assigned</TableCell>
                </TableRow>
             </TableHead>
             <TableBody>
                {data.map((row, index) => (
                   <TableRow key={index}>
-                     <TableCell>
-                        <Avatar title={row.user.name} withName />
-                     </TableCell>
+                     <TableCell>{row.role}</TableCell>
                      <TableCell>
                         <StyledIconGroup>
                            {row.apps.map((app, index) => (
@@ -59,11 +54,11 @@ const UsersListing = () => {
                         </StyledIconGroup>
                      </TableCell>
                      <TableCell>
-                        <Tags>
-                           {row.roles.map(role => (
-                              <Tag key={role}>{role}</Tag>
+                        <AvatarGroup>
+                           {row.users.map(user => (
+                              <Avatar key={user.title} title={user.title} />
                            ))}
-                        </Tags>
+                        </AvatarGroup>
                      </TableCell>
                   </TableRow>
                ))}
@@ -73,4 +68,4 @@ const UsersListing = () => {
    )
 }
 
-export default UsersListing
+export default RolesListing
