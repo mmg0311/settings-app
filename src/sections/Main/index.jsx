@@ -4,11 +4,12 @@ import React from 'react'
 import { Context } from '../../store/tabs'
 
 // Views
-import { Home, AppsListing, RolesListing } from '../../views'
+import { Home, AppsListing, RolesListing, UsersListing } from '../../views'
 
 const renderComponent = (type, view) => {
    if (type === 'listings' && view === 'apps') return <AppsListing />
    if (type === 'listings' && view === 'roles') return <RolesListing />
+   if (type === 'listings' && view === 'users') return <UsersListing />
 }
 
 const Main = () => {
