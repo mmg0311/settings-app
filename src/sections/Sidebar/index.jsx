@@ -11,9 +11,10 @@ import {
    StyledHeading,
 } from './styled'
 
-const Sidebar = ({ visible }) => {
+const Sidebar = ({ visible, toggleSidebar }) => {
    const { dispatch } = React.useContext(Context)
    const addTab = (title, view) => {
+      toggleSidebar(visible => !visible)
       dispatch({ type: 'ADD_TAB', payload: { type: 'listings', title, view } })
    }
    return (

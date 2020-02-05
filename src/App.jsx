@@ -17,7 +17,7 @@ const App = () => {
       <StyledWrapper>
          <Context.Provider value={{ state, dispatch }}>
             <Header toggleSidebar={toggleSidebar} />
-            <Sidebar visible={isSidebarVisible} />
+            <Sidebar visible={isSidebarVisible} toggleSidebar={toggleSidebar} />
             <Main />
          </Context.Provider>
       </StyledWrapper>
