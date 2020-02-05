@@ -3,23 +3,32 @@ import React from 'react'
 const Context = React.createContext()
 
 const state = {
-   listings: [
-      { type: 'listing', title: 'Apps', view: 'apps' },
-      { type: 'listing', title: 'Roles', view: 'roles' },
-   ],
+   listings: [],
    forms: [],
-   current: { type: 'listing', title: 'Roles', view: 'roles' },
+   current: {},
 }
 
 const reducers = (state, { type, payload }) => {
    switch (type) {
       // Add Tab
       case 'ADD_TAB': {
-         return state
+         const alreadyExists = state[payload.type].find(
+            tab => tab.title === payload.title
+         )
+
+         if (alreadyExists) {
+            return { ...state, current: { ...payload } }
+         } else {
+            return {
+               ...state,
+               current: { ...payload },
+               [payload.type]: [...state[payload.type], { ...payload }],
+            }
+         }
       }
       // Delete Tab
       case 'DELETE_TAB': {
-         const type = payload.type + 's'
+         const type = payload.type
          const tabs = state[type].filter(
             (tab, index) =>
                tab.title !== payload.title && index !== payload.index

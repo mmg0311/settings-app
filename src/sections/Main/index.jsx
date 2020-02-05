@@ -7,8 +7,8 @@ import { Context } from '../../store/tabs'
 import { Home, AppsListing, RolesListing } from '../../views'
 
 const renderComponent = (type, view) => {
-   if (type === 'listing' && view === 'apps') return <AppsListing />
-   if (type === 'listing' && view === 'roles') return <RolesListing />
+   if (type === 'listings' && view === 'apps') return <AppsListing />
+   if (type === 'listings' && view === 'roles') return <RolesListing />
 }
 
 const Main = () => {
