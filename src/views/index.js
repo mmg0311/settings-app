@@ -6,4 +6,13 @@ import {
    DevicesListing,
 } from './Listings'
 
-export { Home, AppsListing, RolesListing, UsersListing, DevicesListing }
+import { UserForm } from './Forms'
+
+export {
+   Home,
+   AppsListing,
+   RolesListing,
+   UsersListing,
+   DevicesListing,
+   UserForm,
+}
