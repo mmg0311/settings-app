@@ -1,8 +1,9 @@
 import React from 'react'
 
 // Components
-import { ButtonGroup, IconButton } from '@dailykit/ui'
 import {
+   ButtonGroup,
+   IconButton,
    Table,
    TableHead,
    TableBody,
@@ -10,9 +11,9 @@ import {
    TableCell,
    AvatarGroup,
    Avatar,
-   Tags,
+   TagGroup,
    Tag,
-} from '../../../components'
+} from '@dailykit/ui'
 
 // Styled
 import { StyledWrapper } from '../styled'
@@ -54,11 +55,11 @@ const DevicesListing = () => {
                   <TableRow key={index}>
                      <TableCell>{row.name}</TableCell>
                      <TableCell>
-                        <Tags>
+                        <TagGroup>
                            {row.stations.map((station, index) => (
                               <Tag key={station}>{station}</Tag>
                            ))}
-                        </Tags>
+                        </TagGroup>
                      </TableCell>
                      <TableCell>
                         <AvatarGroup>

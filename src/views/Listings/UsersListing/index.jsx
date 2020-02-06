@@ -1,17 +1,18 @@
 import React from 'react'
 
 // Components
-import { ButtonGroup, IconButton } from '@dailykit/ui'
 import {
+   ButtonGroup,
+   IconButton,
    Table,
    TableHead,
    TableBody,
    TableRow,
    TableCell,
    Avatar,
-   Tags,
+   TagGroup,
    Tag,
-} from '../../../components'
+} from '@dailykit/ui'
 
 // Styled
 import { StyledWrapper, StyledIconGroup, StyledIcon } from '../styled'
@@ -64,11 +65,11 @@ const UsersListing = () => {
                         </StyledIconGroup>
                      </TableCell>
                      <TableCell>
-                        <Tags>
+                        <TagGroup>
                            {row.roles.map(role => (
                               <Tag key={role}>{role}</Tag>
                            ))}
-                        </Tags>
+                        </TagGroup>
                      </TableCell>
                      <TableCell align="right">
                         <ButtonGroup align="right">

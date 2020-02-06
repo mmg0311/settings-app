@@ -7,11 +7,11 @@ import {
    TableBody,
    TableRow,
    TableCell,
-   Tags,
+   TagGroup,
    Tag,
    AvatarGroup,
    Avatar,
-} from '../../../components'
+} from '@dailykit/ui'
 
 // Styled
 import { StyledWrapper, StyledIcon } from '../styled'
@@ -57,11 +57,11 @@ const AppsListing = () => {
                         <StyledIcon />
                      </TableCell>
                      <TableCell>
-                        <Tags>
+                        <TagGroup>
                            {row.roles.map(role => (
                               <Tag key={role}>{role}</Tag>
                            ))}
-                        </Tags>
+                        </TagGroup>
                      </TableCell>
                      <TableCell>
                         <AvatarGroup>
