@@ -16,10 +16,10 @@ import {
 } from '@dailykit/ui'
 
 // Styled
-import { StyledWrapper } from '../styled'
+import { StyledWrapper, StyledHeader } from '../styled'
 
 // Icons
-import { EditIcon, DeleteIcon } from '../../../assets/icons'
+import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const DevicesListing = () => {
    const data = [
@@ -40,7 +40,12 @@ const DevicesListing = () => {
    ]
    return (
       <StyledWrapper>
-         <h1>Roles</h1>
+         <StyledHeader>
+            <h1>Devices</h1>
+            <IconButton type="solid">
+               <AddIcon color="#fff" size={24} />
+            </IconButton>
+         </StyledHeader>
          <Table>
             <TableHead>
                <TableRow>

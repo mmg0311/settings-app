@@ -6,10 +6,20 @@ export const StyledWrapper = styled.div`
    h1 {
       color: #555b6e;
       font-size: 20px;
-      padding: 40px 0;
       font-weight: 500;
       line-height: 23px;
    }
+   table {
+      width: 980px;
+      margin: 0 auto;
+   }
+`
+
+export const StyledHeader = styled.div`
+   height: 80px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
 `
 
 export const StyledIconGroup = styled.div`

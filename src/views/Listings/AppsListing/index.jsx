@@ -14,7 +14,7 @@ import {
 } from '@dailykit/ui'
 
 // Styled
-import { StyledWrapper, StyledIcon } from '../styled'
+import { StyledWrapper, StyledIcon, StyledHeader } from '../styled'
 
 const AppsListing = () => {
    const data = [
@@ -41,7 +41,9 @@ const AppsListing = () => {
    ]
    return (
       <StyledWrapper>
-         <h1>Apps</h1>
+         <StyledHeader>
+            <h1>Apps</h1>
+         </StyledHeader>
          <Table>
             <TableHead>
                <TableRow>

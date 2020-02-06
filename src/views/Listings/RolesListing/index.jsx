@@ -14,10 +14,15 @@ import {
 } from '@dailykit/ui'
 
 // Styled
-import { StyledWrapper, StyledIconGroup, StyledIcon } from '../styled'
+import {
+   StyledWrapper,
+   StyledHeader,
+   StyledIconGroup,
+   StyledIcon,
+} from '../styled'
 
 // Icons
-import { EditIcon, DeleteIcon } from '../../../assets/icons'
+import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const RolesListing = () => {
    const data = [
@@ -38,7 +43,12 @@ const RolesListing = () => {
    ]
    return (
       <StyledWrapper>
-         <h1>Roles</h1>
+         <StyledHeader>
+            <h1>Roles</h1>
+            <IconButton type="solid">
+               <AddIcon color="#fff" size={24} />
+            </IconButton>
+         </StyledHeader>
          <Table>
             <TableHead>
                <TableRow>
