@@ -10,6 +10,13 @@ const state = {
 
 const reducers = (state, { type, payload }) => {
    switch (type) {
+      case 'SET_FORM_DATA': {
+         const index = state[payload.type].findIndex(
+            tab => tab.type === payload.type && tab.view === payload.view
+         )
+         state[payload.type][index] = payload
+         return state
+      }
       // Add Tab
       case 'ADD_TAB': {
          const alreadyExists = state[payload.type].find(

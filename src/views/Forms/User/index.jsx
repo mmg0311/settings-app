@@ -1,5 +1,8 @@
 import React from 'react'
 
+// State
+import { Context } from '../../../store/tabs'
+
 // Components
 import { TextButton, Text } from '@dailykit/ui'
 
@@ -7,11 +10,30 @@ import { TextButton, Text } from '@dailykit/ui'
 import { StyledWrapper, StyledHeader, StyledForm, StyledRow } from '../styled'
 
 const UserForm = () => {
+   const { state, dispatch } = React.useContext(Context)
    const [form, setForm] = React.useState({
       firstname: '',
       lastname: '',
       email: '',
    })
+
+   React.useEffect(() => {
+      const { data } = state.forms.find(tab => tab.view === 'user')
+      setForm({ ...data })
+   }, [state.forms])
+
+   React.useEffect(() => {
+      dispatch({
+         type: 'SET_FORM_DATA',
+         payload: {
+            data: form,
+            view: 'user',
+            type: 'forms',
+            title: 'User Form',
+         },
+      })
+   }, [dispatch, form])
+
    const handleChange = e => {
       const { name, value } = e.target
       setForm(form => ({
