@@ -1,5 +1,8 @@
 import React from 'react'
 
+// State
+import { Context } from '../../../store/tabs'
+
 // Components
 import {
    ButtonGroup,
@@ -22,6 +25,10 @@ import { StyledWrapper, StyledHeader } from '../styled'
 import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const DevicesListing = () => {
+   const { dispatch } = React.useContext(Context)
+   const addTab = (title, view) => {
+      dispatch({ type: 'ADD_TAB', payload: { type: 'forms', title, view } })
+   }
    const data = [
       {
          name: 'Weighing Scale Terminal',
@@ -42,7 +49,10 @@ const DevicesListing = () => {
       <StyledWrapper>
          <StyledHeader>
             <h1>Devices</h1>
-            <IconButton type="solid">
+            <IconButton
+               type="solid"
+               onClick={() => addTab('Device Form', 'device')}
+            >
                <AddIcon color="#fff" size={24} />
             </IconButton>
          </StyledHeader>

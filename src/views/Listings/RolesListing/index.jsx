@@ -1,5 +1,8 @@
 import React from 'react'
 
+// State
+import { Context } from '../../../store/tabs'
+
 // Components
 import {
    ButtonGroup,
@@ -25,6 +28,10 @@ import {
 import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const RolesListing = () => {
+   const { dispatch } = React.useContext(Context)
+   const addTab = (title, view) => {
+      dispatch({ type: 'ADD_TAB', payload: { type: 'forms', title, view } })
+   }
    const data = [
       {
          role: 'Admin',
@@ -45,7 +52,10 @@ const RolesListing = () => {
       <StyledWrapper>
          <StyledHeader>
             <h1>Roles</h1>
-            <IconButton type="solid">
+            <IconButton
+               type="solid"
+               onClick={() => addTab('Role Form', 'role')}
+            >
                <AddIcon color="#fff" size={24} />
             </IconButton>
          </StyledHeader>
