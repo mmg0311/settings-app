@@ -15,11 +15,13 @@ const UserForm = () => {
       firstname: '',
       lastname: '',
       email: '',
+      phoneCode: '',
+      phoneNo: '',
    })
 
    React.useEffect(() => {
-      const { data } = state.forms.find(tab => tab.view === 'user')
-      setForm({ ...data })
+      const tab = state.forms.find(tab => tab.view === 'user')
+      setForm({ ...tab?.data })
    }, [state.forms])
 
    React.useEffect(() => {
