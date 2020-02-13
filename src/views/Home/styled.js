@@ -35,6 +35,9 @@ export const StyledCard = styled.li`
    list-style: none;
    border: 1px solid #d8d8d8;
    padding: 40px 20px 20px 20px;
+   :hover {
+      background: #f3f3f3;
+   }
    h2 {
       color: #555b6e;
       padding: 16px 0;
