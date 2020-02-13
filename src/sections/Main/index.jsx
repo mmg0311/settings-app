@@ -11,6 +11,8 @@ import {
    UsersListing,
    DevicesListing,
    UserForm,
+   RoleForm,
+   DeviceForm,
 } from '../../views'
 
 const renderComponent = (type, view) => {
@@ -21,6 +23,8 @@ const renderComponent = (type, view) => {
    if (type === 'listings' && view === 'devices') return <DevicesListing />
    // Forms
    if (type === 'forms' && view === 'user') return <UserForm />
+   if (type === 'forms' && view === 'role') return <RoleForm />
+   if (type === 'forms' && view === 'device') return <DeviceForm />
 }
 
 const Main = () => {
