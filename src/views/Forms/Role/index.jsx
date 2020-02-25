@@ -18,6 +18,7 @@ import {
    List,
    ListOptions,
    ListSearch,
+   Avatar,
 } from '@dailykit/ui'
 
 // Styled
@@ -29,26 +30,45 @@ import {
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
+import { StyledAppItem } from './styled'
 
 const RoleForm = () => {
    const { state, dispatch } = React.useContext(Context)
-   const [tunnels, openTunnel, closeTunnel] = useTunnel(1)
+   const [selectedApp, setSelectedApp] = React.useState({})
+   const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
+   const [
+      permissionTunnels,
+      openPermissionsTunnel,
+      closePermissionsTunnel,
+   ] = useTunnel(1)
    const [form, setForm] = React.useState({
       roleName: '',
+      apps: [],
    })
    const [search, setSearch] = React.useState('')
 
    const [list, selected, selectOption] = useMultiList([
-      { id: 1, title: 'Ingredient App', icon: '' },
-      { id: 2, title: 'Recipe App', icon: '' },
-      { id: 3, title: 'Inventory App', icon: '' },
-      { id: 4, title: 'Settings App', icon: '' },
+      {
+         id: 1,
+         title: 'Ingredient App',
+         icon: '',
+      },
+      {
+         id: 2,
+         title: 'Recipe App',
+         icon: '',
+      },
+      {
+         id: 3,
+         title: 'Inventory App',
+         icon: '',
+      },
+      {
+         id: 4,
+         title: 'Settings App',
+         icon: '',
+      },
    ])
-
-   React.useEffect(() => {
-      const tab = state.forms.find(tab => tab.view === 'role')
-      setForm({ ...tab?.data })
-   }, [state.forms])
 
    React.useEffect(() => {
       dispatch({
@@ -82,8 +102,28 @@ const RoleForm = () => {
             <TextButton type="solid">Publish</TextButton>
          </StyledHeader>
          <StyledSection>
-            <StyledHeading>Apps</StyledHeading>
-            <div onClick={() => openTunnel(1)}>
+            <StyledHeading>Apps ({form.apps.length})</StyledHeading>
+            {form.apps.length > 0 &&
+               form.apps.map(option => (
+                  <StyledAppItem key={option.id}>
+                     <Avatar
+                        withName
+                        type="round"
+                        url={option.icon}
+                        title={option.title}
+                     />
+                     <TextButton
+                        type="ghost"
+                        onClick={() => {
+                           setSelectedApp(option)
+                           openPermissionsTunnel(1)
+                        }}
+                     >
+                        Configure
+                     </TextButton>
+                  </StyledAppItem>
+               ))}
+            <div onClick={() => openAppsTunnel(1)}>
                <ButtonTile
                   noIcon
                   size="sm"
@@ -92,16 +132,25 @@ const RoleForm = () => {
                />
             </div>
          </StyledSection>
-         <Tunnels tunnels={tunnels}>
+         <Tunnels tunnels={appsTunnels}>
             <Tunnel layer={1}>
                <StyledTunnelHeader>
                   <div>
-                     <IconButton type="ghost" onClick={() => closeTunnel(1)}>
+                     <IconButton
+                        type="ghost"
+                        onClick={() => closeAppsTunnel(1)}
+                     >
                         <ClearIcon size={20} />
                      </IconButton>
                      <h1>Configure Apps</h1>
                   </div>
-                  <TextButton type="solid" onClick={() => closeTunnel(1)}>
+                  <TextButton
+                     type="solid"
+                     onClick={() => {
+                        closeAppsTunnel(1)
+                        setForm(form => ({ ...form, apps: [...selected] }))
+                     }}
+                  >
                      Add
                   </TextButton>
                </StyledTunnelHeader>
@@ -119,6 +168,7 @@ const RoleForm = () => {
                            .map(option => (
                               <ListItem
                                  type="MSL1101"
+                                 key={option.id}
                                  content={{
                                     icon: option.icon,
                                     title: option.title,
@@ -127,32 +177,37 @@ const RoleForm = () => {
                                  isActive={selected.find(
                                     item => item.id === option.id
                                  )}
-                              >
-                                 <TextButton
-                                    type="ghost"
-                                    onClick={() => openTunnel(2)}
-                                 >
-                                    CONFIGURE
-                                 </TextButton>
-                              </ListItem>
+                              />
                            ))}
                      </ListOptions>
                   </List>
                </StyledTunnelMain>
             </Tunnel>
-            <Tunnel layer={2}>
+         </Tunnels>
+         <Tunnels tunnels={permissionTunnels}>
+            <Tunnel layer={1}>
                <StyledTunnelHeader>
                   <div>
-                     <IconButton type="ghost" onClick={() => closeTunnel(2)}>
+                     <IconButton
+                        type="ghost"
+                        onClick={() => closePermissionsTunnel(1)}
+                     >
                         <ClearIcon size={20} />
                      </IconButton>
-                     <h1>Permissions</h1>
+                     <h1>{selectedApp.title}</h1>
                   </div>
-                  <TextButton type="solid" onClick={() => closeTunnel(2)}>
+                  <TextButton
+                     type="solid"
+                     onClick={() => {
+                        closePermissionsTunnel(1)
+                     }}
+                  >
                      Save
                   </TextButton>
                </StyledTunnelHeader>
-               <StyledTunnelMain>Permission List</StyledTunnelMain>
+               <StyledTunnelMain>
+                  <h3>Permissions List</h3>
+               </StyledTunnelMain>
             </Tunnel>
          </Tunnels>
       </StyledWrapper>
