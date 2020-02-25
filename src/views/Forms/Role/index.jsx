@@ -19,6 +19,9 @@ import {
    ListOptions,
    ListSearch,
    Avatar,
+   TickIcon,
+   ArrowUpIcon,
+   ArrowDownIcon,
 } from '@dailykit/ui'
 
 // Styled
@@ -34,6 +37,7 @@ import { StyledAppItem } from './styled'
 
 const RoleForm = () => {
    const { state, dispatch } = React.useContext(Context)
+   const [isOpen, setIsOpen] = React.useState('')
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
    const [
@@ -52,21 +56,45 @@ const RoleForm = () => {
          id: 1,
          title: 'Ingredient App',
          icon: '',
+         permissions: [
+            { title: 'Create', allowed: false },
+            { title: 'Read', allowed: false },
+            { title: 'Update', allowed: true },
+            { title: 'Delete', allowed: false },
+         ],
       },
       {
          id: 2,
          title: 'Recipe App',
          icon: '',
+         permissions: [
+            { title: 'Create', allowed: false },
+            { title: 'Read', allowed: true },
+            { title: 'Update', allowed: false },
+            { title: 'Delete', allowed: true },
+         ],
       },
       {
          id: 3,
          title: 'Inventory App',
          icon: '',
+         permissions: [
+            { title: 'Create', allowed: true },
+            { title: 'Read', allowed: false },
+            { title: 'Update', allowed: true },
+            { title: 'Delete', allowed: false },
+         ],
       },
       {
          id: 4,
          title: 'Settings App',
          icon: '',
+         permissions: [
+            { title: 'Create', allowed: false },
+            { title: 'Read', allowed: false },
+            { title: 'Update', allowed: true },
+            { title: 'Delete', allowed: false },
+         ],
       },
    ])
 
@@ -106,21 +134,54 @@ const RoleForm = () => {
             {form.apps.length > 0 &&
                form.apps.map(option => (
                   <StyledAppItem key={option.id}>
-                     <Avatar
-                        withName
-                        type="round"
-                        url={option.icon}
-                        title={option.title}
-                     />
-                     <TextButton
-                        type="ghost"
-                        onClick={() => {
-                           setSelectedApp(option)
-                           openPermissionsTunnel(1)
-                        }}
-                     >
-                        Configure
-                     </TextButton>
+                     <div>
+                        <div>
+                           <Avatar
+                              withName
+                              type="round"
+                              url={option.icon}
+                              title={option.title}
+                           />
+                           <span
+                              onClick={() =>
+                                 setIsOpen(value =>
+                                    value === option.title ? '' : option.title
+                                 )
+                              }
+                           >
+                              {isOpen === option.title ? (
+                                 <ArrowUpIcon color="#555B6E" size={24} />
+                              ) : (
+                                 <ArrowDownIcon color="#555B6E" size={24} />
+                              )}
+                           </span>
+                        </div>
+                        <TextButton
+                           type="ghost"
+                           onClick={() => {
+                              setSelectedApp(option)
+                              openPermissionsTunnel(1)
+                           }}
+                        >
+                           Configure
+                        </TextButton>
+                     </div>
+                     {isOpen === option.title && (
+                        <ul>
+                           {option.permissions.map(permission => (
+                              <li key={permission.title}>
+                                 <span>
+                                    {permission.allowed ? (
+                                       <TickIcon color="#28C1F7" size={20} />
+                                    ) : (
+                                       <ClearIcon color="#FF5A52" size={20} />
+                                    )}
+                                 </span>
+                                 <span>{permission.title}</span>
+                              </li>
+                           ))}
+                        </ul>
+                     )}
                   </StyledAppItem>
                ))}
             <div onClick={() => openAppsTunnel(1)}>
