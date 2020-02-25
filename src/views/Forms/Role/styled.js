@@ -39,3 +39,19 @@ export const StyledAppItem = styled.div`
       }
    }
 `
+
+export const StyledPermissions = styled.div`
+   height: auto;
+   > div {
+      height: 40px;
+      display: flex;
+      align-items: center;
+   }
+`
+
+export const StyledPermissionsHeading = styled.h3`
+   color: #555b6e;
+   font-size: 20px;
+   font-weight: 400;
+   margin-bottom: 8px;
+`

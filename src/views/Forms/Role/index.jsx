@@ -22,6 +22,7 @@ import {
    TickIcon,
    ArrowUpIcon,
    ArrowDownIcon,
+   Toggle,
 } from '@dailykit/ui'
 
 // Styled
@@ -33,7 +34,11 @@ import {
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
-import { StyledAppItem } from './styled'
+import {
+   StyledAppItem,
+   StyledPermissions,
+   StyledPermissionsHeading,
+} from './styled'
 
 const RoleForm = () => {
    const { state, dispatch } = React.useContext(Context)
@@ -57,7 +62,7 @@ const RoleForm = () => {
          title: 'Ingredient App',
          icon: '',
          permissions: [
-            { title: 'Create', allowed: false },
+            { title: 'Create', allowed: true },
             { title: 'Read', allowed: false },
             { title: 'Update', allowed: true },
             { title: 'Delete', allowed: false },
@@ -82,7 +87,7 @@ const RoleForm = () => {
             { title: 'Create', allowed: true },
             { title: 'Read', allowed: false },
             { title: 'Update', allowed: true },
-            { title: 'Delete', allowed: false },
+            { title: 'Delete', allowed: true },
          ],
       },
       {
@@ -267,7 +272,22 @@ const RoleForm = () => {
                   </TextButton>
                </StyledTunnelHeader>
                <StyledTunnelMain>
-                  <h3>Permissions List</h3>
+                  <StyledPermissionsHeading>
+                     Permissions for role: {form.roleName || 'Untitled'}
+                  </StyledPermissionsHeading>
+                  <StyledPermissions>
+                     {Object.keys(selectedApp).length > 0 &&
+                        selectedApp.permissions.map(permission => (
+                           <Toggle
+                              key={permission.title}
+                              label={permission.title}
+                              checked={permission.allowed}
+                              setChecked={() =>
+                                 console.log('toggle permission')
+                              }
+                           />
+                        ))}
+                  </StyledPermissions>
                </StyledTunnelMain>
             </Tunnel>
          </Tunnels>
