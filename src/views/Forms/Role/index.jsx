@@ -7,7 +7,7 @@ import { Context } from '../../../store/tabs'
 import {
    TextButton,
    IconButton,
-   Text,
+   Input,
    ButtonTile,
    Tunnels,
    Tunnel,
@@ -23,25 +23,21 @@ import {
    ArrowUpIcon,
    ArrowDownIcon,
    Toggle,
+   Text,
 } from '@dailykit/ui'
 
 // Styled
 import {
    StyledWrapper,
    StyledHeader,
-   StyledHeading,
    StyledSection,
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
-import {
-   StyledAppItem,
-   StyledPermissions,
-   StyledPermissionsHeading,
-} from './styled'
+import { StyledAppItem, StyledPermissions } from './styled'
 
 const RoleForm = () => {
-   const { state, dispatch } = React.useContext(Context)
+   const { dispatch } = React.useContext(Context)
    const [isOpen, setIsOpen] = React.useState('')
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
@@ -125,7 +121,8 @@ const RoleForm = () => {
    return (
       <StyledWrapper>
          <StyledHeader>
-            <Text
+            <Input
+               type="text"
                name="roleName"
                style={{ width: '320px' }}
                value={form.roleName || ''}
@@ -135,7 +132,7 @@ const RoleForm = () => {
             <TextButton type="solid">Publish</TextButton>
          </StyledHeader>
          <StyledSection>
-            <StyledHeading>Apps ({form.apps.length})</StyledHeading>
+            <Text as="h2">Apps ({form.apps.length})</Text>
             {form.apps.length > 0 &&
                form.apps.map(option => (
                   <StyledAppItem key={option.id}>
@@ -189,14 +186,13 @@ const RoleForm = () => {
                      )}
                   </StyledAppItem>
                ))}
-            <div onClick={() => openAppsTunnel(1)}>
-               <ButtonTile
-                  noIcon
-                  size="sm"
-                  type="secondary"
-                  text="Select and Configure Apps"
-               />
-            </div>
+            <ButtonTile
+               noIcon
+               size="sm"
+               type="secondary"
+               text="Select and Configure Apps"
+               onClick={() => openAppsTunnel(1)}
+            />
          </StyledSection>
          <Tunnels tunnels={appsTunnels}>
             <Tunnel layer={1}>
@@ -208,7 +204,7 @@ const RoleForm = () => {
                      >
                         <ClearIcon size={20} />
                      </IconButton>
-                     <h1>Configure Apps</h1>
+                     <Text as="h2">Configure Apps</Text>
                   </div>
                   <TextButton
                      type="solid"
@@ -260,7 +256,7 @@ const RoleForm = () => {
                      >
                         <ClearIcon size={20} />
                      </IconButton>
-                     <h1>{selectedApp.title}</h1>
+                     <Text as="h2">{selectedApp.title}</Text>
                   </div>
                   <TextButton
                      type="solid"
@@ -272,9 +268,9 @@ const RoleForm = () => {
                   </TextButton>
                </StyledTunnelHeader>
                <StyledTunnelMain>
-                  <StyledPermissionsHeading>
+                  <Text as="title">
                      Permissions for role: {form.roleName || 'Untitled'}
-                  </StyledPermissionsHeading>
+                  </Text>
                   <StyledPermissions>
                      {Object.keys(selectedApp).length > 0 &&
                         selectedApp.permissions.map(permission => (

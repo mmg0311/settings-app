@@ -1620,10 +1620,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@dailykit/ui@^0.6.3":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@dailykit/ui/-/ui-0.6.3.tgz#faef9088dcd2f6b48e76e7dd8273de7cad5f8155"
-  integrity sha512-2cyfAkslmez1QySICRC9lS/REQiElS9K/2TfW2jxF9TCyTmi6YdGhyskg4wWKs96OdXvV7d4OsFmiWBjoxaYlA==
+"@dailykit/ui@^0.6.65":
+  version "0.6.65"
+  resolved "https://registry.yarnpkg.com/@dailykit/ui/-/ui-0.6.65.tgz#d131321d5c245209253419321c136a40b96b6a42"
+  integrity sha512-K4gRzXaA2HxJaK5RHmmlWXMcQCLyKQS2EfbX88abCjiAXovKMg8qkuyzMgwI7Ba0TpfH9qMQuR50YF0evSquww==
 
 "@emotion/is-prop-valid@^0.8.3":
   version "0.8.6"

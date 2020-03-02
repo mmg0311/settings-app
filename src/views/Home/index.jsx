@@ -3,7 +3,9 @@ import React from 'react'
 // State
 import { Context } from '../../store/tabs'
 
-import { StyledHome, StyledCardList, StyledCard } from './styled'
+import { DashboardTile, Text } from '@dailykit/ui'
+
+import { StyledHome, StyledCardList } from './styled'
 
 const Home = () => {
    const { dispatch } = React.useContext(Context)
@@ -12,32 +14,32 @@ const Home = () => {
    }
    return (
       <StyledHome>
-         <h1>Settings App</h1>
+         <Text as="h1">Settings App</Text>
          <StyledCardList>
-            <StyledCard onClick={() => addTab('Users', 'users')}>
-               <h2>Users</h2>
-               <p>23 created so far</p>
-               <span data-type="status">All available</span>
-               <span data-type="link">Go to Users ></span>
-            </StyledCard>
-            <StyledCard onClick={() => addTab('Roles', 'roles')}>
-               <h2>Roles</h2>
-               <p>4 created so far</p>
-               <span data-type="status">All active</span>
-               <span data-type="link">Go to Roles ></span>
-            </StyledCard>
-            <StyledCard onClick={() => addTab('Apps', 'apps')}>
-               <h2>Apps</h2>
-               <p>6 created so far</p>
-               <span data-type="status">All available</span>
-               <span data-type="link">Go to Apps ></span>
-            </StyledCard>
-            <StyledCard onClick={() => addTab('Devices', 'devices')}>
-               <h2>Devices</h2>
-               <p>4 created so far</p>
-               <span data-type="status">All active</span>
-               <span data-type="link">Go to Devices ></span>
-            </StyledCard>
+            <DashboardTile
+               title="Users"
+               count="23"
+               conf="All available"
+               onClick={() => addTab('Users', 'users')}
+            />
+            <DashboardTile
+               title="Roles"
+               count="4"
+               conf="All available"
+               onClick={() => addTab('Roles', 'roles')}
+            />
+            <DashboardTile
+               title="Apps"
+               count="6"
+               conf="All available"
+               onClick={() => addTab('Apps', 'apps')}
+            />
+            <DashboardTile
+               title="Devices"
+               count="4"
+               conf="All active"
+               onClick={() => addTab('Devices', 'devices')}
+            />
          </StyledCardList>
       </StyledHome>
    )

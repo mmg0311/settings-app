@@ -15,6 +15,7 @@ import {
    Avatar,
    TagGroup,
    Tag,
+   Text,
 } from '@dailykit/ui'
 
 // Styled
@@ -54,7 +55,7 @@ const UsersListing = () => {
    return (
       <StyledWrapper>
          <StyledHeader>
-            <h1>Users</h1>
+            <Text as="h2">Users</Text>
             <IconButton
                type="solid"
                onClick={() => addTab('User Form', 'user')}

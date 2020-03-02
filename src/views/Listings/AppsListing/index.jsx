@@ -11,6 +11,7 @@ import {
    Tag,
    AvatarGroup,
    Avatar,
+   Text,
 } from '@dailykit/ui'
 
 // Styled
@@ -42,7 +43,7 @@ const AppsListing = () => {
    return (
       <StyledWrapper>
          <StyledHeader>
-            <h1>Apps</h1>
+            <Text as="h2">Apps</Text>
          </StyledHeader>
          <Table>
             <TableHead>

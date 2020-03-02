@@ -8,7 +8,7 @@ import {
    TextButton,
    IconButton,
    ClearIcon,
-   Text,
+   Input,
    ButtonTile,
    Tunnels,
    Tunnel,
@@ -19,6 +19,7 @@ import {
    ListSearch,
    useMultiList,
    Avatar,
+   Text,
 } from '@dailykit/ui'
 
 // Styled
@@ -27,12 +28,11 @@ import {
    StyledHeader,
    StyledForm,
    StyledRow,
-   StyledHeading,
    StyledSection,
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
-import { StyledSelect, StyledAppItem, StyledRolesHeading } from './styled'
+import { StyledSelect, StyledAppItem } from './styled'
 
 const UserForm = () => {
    const { dispatch } = React.useContext(Context)
@@ -94,18 +94,20 @@ const UserForm = () => {
    return (
       <StyledWrapper>
          <StyledHeader>
-            <h1>New User</h1>
+            <Text as="h2">New User</Text>
             <TextButton type="solid">Publish</TextButton>
          </StyledHeader>
          <StyledForm>
             <StyledRow>
-               <Text
+               <Input
+                  type="text"
                   name="firstname"
                   label="First Name"
                   value={form.firstname || ''}
                   onChange={e => handleChange(e)}
                />
-               <Text
+               <Input
+                  type="text"
                   name="lastname"
                   label="Last Name"
                   value={form.lastname || ''}
@@ -113,7 +115,8 @@ const UserForm = () => {
                />
             </StyledRow>
             <StyledRow>
-               <Text
+               <Input
+                  type="text"
                   name="email"
                   label="Email"
                   value={form.email || ''}
@@ -131,7 +134,8 @@ const UserForm = () => {
                   <option value="68">+68</option>
                   <option value="72">+72</option>
                </StyledSelect>
-               <Text
+               <Input
+                  type="text"
                   name="phoneNo"
                   label="Phone Number"
                   value={form.phoneNo || ''}
@@ -139,7 +143,7 @@ const UserForm = () => {
                />
             </StyledRow>
             <StyledSection>
-               <StyledHeading>Apps</StyledHeading>
+               <Text as="title">Apps</Text>
                {form.apps.length > 0 &&
                   form.apps.map(option => (
                      <StyledAppItem key={option.id}>
@@ -164,25 +168,22 @@ const UserForm = () => {
                         </div>
                      </StyledAppItem>
                   ))}
-               <div onClick={() => openAppsTunnel(1)}>
-                  <ButtonTile
-                     noIcon
-                     size="sm"
-                     type="secondary"
-                     text="Select Apps"
-                  />
-               </div>
+               <ButtonTile
+                  noIcon
+                  size="sm"
+                  type="secondary"
+                  text="Select Apps"
+                  onClick={() => openAppsTunnel(1)}
+               />
             </StyledSection>
             <StyledSection>
-               <StyledHeading>Devices</StyledHeading>
-               <div>
-                  <ButtonTile
-                     noIcon
-                     size="sm"
-                     type="secondary"
-                     text="Select Devices"
-                  />
-               </div>
+               <Text as="title">Devices</Text>
+               <ButtonTile
+                  noIcon
+                  size="sm"
+                  type="secondary"
+                  text="Select Devices"
+               />
             </StyledSection>
             <Tunnels tunnels={appsTunnels}>
                <Tunnel layer={1}>
@@ -194,7 +195,7 @@ const UserForm = () => {
                         >
                            <ClearIcon size={20} />
                         </IconButton>
-                        <h1>Configure Apps</h1>
+                        <Text as="h2">Configure Apps</Text>
                      </div>
                      <TextButton
                         type="solid"
@@ -248,7 +249,7 @@ const UserForm = () => {
                         >
                            <ClearIcon size={20} />
                         </IconButton>
-                        <h1>{selectedApp.title}</h1>
+                        <Text as="h2">{selectedApp.title}</Text>
                      </div>
                      <TextButton
                         type="solid"
@@ -260,9 +261,9 @@ const UserForm = () => {
                      </TextButton>
                   </StyledTunnelHeader>
                   <StyledTunnelMain>
-                     <StyledRolesHeading>
+                     <Text as="title">
                         Roles for role: {form.roleName || 'Untitled'}
-                     </StyledRolesHeading>
+                     </Text>
                   </StyledTunnelMain>
                </Tunnel>
             </Tunnels>

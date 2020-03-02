@@ -48,10 +48,3 @@ export const StyledPermissions = styled.div`
       align-items: center;
    }
 `
-
-export const StyledPermissionsHeading = styled.h3`
-   color: #555b6e;
-   font-size: 20px;
-   font-weight: 400;
-   margin-bottom: 8px;
-`

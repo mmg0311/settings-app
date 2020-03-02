@@ -48,10 +48,3 @@ export const StyledSelect = styled.select`
    margin-right: 8px;
    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `
-
-export const StyledRolesHeading = styled.h3`
-   color: #555b6e;
-   font-size: 20px;
-   font-weight: 400;
-   margin-bottom: 8px;
-`

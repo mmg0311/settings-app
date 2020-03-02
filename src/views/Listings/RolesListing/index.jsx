@@ -14,6 +14,7 @@ import {
    TableCell,
    AvatarGroup,
    Avatar,
+   Text,
 } from '@dailykit/ui'
 
 // Styled
@@ -51,7 +52,7 @@ const RolesListing = () => {
    return (
       <StyledWrapper>
          <StyledHeader>
-            <h1>Roles</h1>
+            <Text as="h2">Roles</Text>
             <IconButton
                type="solid"
                onClick={() => addTab('Role Form', 'role')}
