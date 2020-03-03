@@ -1,4 +1,6 @@
 import React from 'react'
+import { v4 as uuid } from 'uuid'
+import { useHistory } from 'react-router-dom'
 
 // State
 import { Context } from '../../../store/tabs'
@@ -26,10 +28,21 @@ import { StyledWrapper, StyledHeader } from '../styled'
 import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const DevicesListing = () => {
-   const { dispatch } = React.useContext(Context)
-   const addTab = (title, view) => {
-      dispatch({ type: 'ADD_TAB', payload: { type: 'forms', title, view } })
+   const history = useHistory()
+   const { state, dispatch } = React.useContext(Context)
+   const addTab = () => {
+      const hash = `untitled${uuid().split('-')[0]}`
+      dispatch({
+         type: 'ADD_TAB',
+         payload: { title: hash, path: `/devices/${hash}`, history },
+      })
    }
+   React.useEffect(() => {
+      const tab = state.tabs.find(item => item.path === `/devices`) || {}
+      if (!Object.prototype.hasOwnProperty.call(tab, 'path')) {
+         history.push('/')
+      }
+   }, [history, state.tabs])
    const data = [
       {
          name: 'Weighing Scale Terminal',
@@ -50,10 +63,7 @@ const DevicesListing = () => {
       <StyledWrapper>
          <StyledHeader>
             <Text as="h2">Devices</Text>
-            <IconButton
-               type="solid"
-               onClick={() => addTab('Device Form', 'device')}
-            >
+            <IconButton type="solid" onClick={() => addTab()}>
                <AddIcon color="#fff" size={24} />
             </IconButton>
          </StyledHeader>

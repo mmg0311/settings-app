@@ -1,7 +1,5 @@
 import React from 'react'
-
-// State
-import { Context } from '../../store/tabs'
+import { Switch, Route } from 'react-router-dom'
 
 // Views
 import {
@@ -15,22 +13,37 @@ import {
    DeviceForm,
 } from '../../views'
 
-const renderComponent = (type, view) => {
-   // Listings
-   if (type === 'listings' && view === 'apps') return <AppsListing />
-   if (type === 'listings' && view === 'roles') return <RolesListing />
-   if (type === 'listings' && view === 'users') return <UsersListing />
-   if (type === 'listings' && view === 'devices') return <DevicesListing />
-   // Forms
-   if (type === 'forms' && view === 'user') return <UserForm />
-   if (type === 'forms' && view === 'role') return <RoleForm />
-   if (type === 'forms' && view === 'device') return <DeviceForm />
-}
-
 const Main = () => {
-   const { state } = React.useContext(Context)
-   if (state.listings.length === 0 && state.forms.length === 0) return <Home />
-   return <main>{renderComponent(state.current.type, state.current.view)}</main>
+   return (
+      <main>
+         <Switch>
+            <Route path="/" exact>
+               <Home />
+            </Route>
+            <Route path="/apps" exact>
+               <AppsListing />
+            </Route>
+            <Route path="/users" exact>
+               <UsersListing />
+            </Route>
+            <Route path="/users/:name">
+               <UserForm />
+            </Route>
+            <Route path="/roles" exact>
+               <RolesListing />
+            </Route>
+            <Route path="/roles/:name">
+               <RoleForm />
+            </Route>
+            <Route path="/devices" exact>
+               <DevicesListing />
+            </Route>
+            <Route path="/devices/:name">
+               <DeviceForm />
+            </Route>
+         </Switch>
+      </main>
+   )
 }
 
 export default Main

@@ -1,6 +1,7 @@
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import { Context, state as initialState, reducers } from './store/tabs'
+import { Context, initialState, reducers } from './store/tabs'
 
 // Sections
 import Header from './sections/Header'
@@ -16,9 +17,14 @@ const App = () => {
    return (
       <StyledWrapper>
          <Context.Provider value={{ state, dispatch }}>
-            <Header toggleSidebar={toggleSidebar} />
-            <Sidebar visible={isSidebarVisible} toggleSidebar={toggleSidebar} />
-            <Main />
+            <Router>
+               <Header toggleSidebar={toggleSidebar} />
+               <Sidebar
+                  visible={isSidebarVisible}
+                  toggleSidebar={toggleSidebar}
+               />
+               <Main />
+            </Router>
          </Context.Provider>
       </StyledWrapper>
    )
