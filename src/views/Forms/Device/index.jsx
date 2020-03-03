@@ -16,6 +16,7 @@ import {
    ListOptions,
    ListSearch,
    useMultiList,
+   Avatar,
 } from '@dailykit/ui'
 
 // Styled
@@ -26,10 +27,15 @@ import {
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
+import { StyledSelectedUsers } from './styled'
 
 const DeviceForm = () => {
    const [usersTunnels, openUsersTunnel, closeUsersTunnel] = useTunnel(1)
    const [search, setSearch] = React.useState('')
+   const [form, setForm] = React.useState({
+      type: '',
+      users: [],
+   })
    const [list, selected, selectOption] = useMultiList([
       { id: 1, title: 'Praveen Bisht', img: '' },
       { id: 2, title: 'Marky Mark', img: '' },
@@ -77,6 +83,18 @@ const DeviceForm = () => {
             </StyledSection>
             <StyledSection>
                <Text as="title">Users</Text>
+               {form.users?.length > 0 && (
+                  <StyledSelectedUsers>
+                     {form.users.map(user => (
+                        <Avatar
+                           withName
+                           key={user.id}
+                           url={user.img}
+                           title={user.title}
+                        />
+                     ))}
+                  </StyledSelectedUsers>
+               )}
                <ButtonTile
                   noIcon
                   size="sm"
@@ -100,6 +118,7 @@ const DeviceForm = () => {
                            type="solid"
                            onClick={() => {
                               closeUsersTunnel(1)
+                              setForm({ ...form, users: selected })
                            }}
                         >
                            Add
