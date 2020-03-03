@@ -1,4 +1,6 @@
 import React from 'react'
+import { v4 as uuid } from 'uuid'
+import { useHistory } from 'react-router-dom'
 
 // State
 import { Context } from '../../../store/tabs'
@@ -29,10 +31,21 @@ import {
 import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const RolesListing = () => {
-   const { dispatch } = React.useContext(Context)
-   const addTab = (title, view) => {
-      dispatch({ type: 'ADD_TAB', payload: { type: 'forms', title, view } })
+   const history = useHistory()
+   const { state, dispatch } = React.useContext(Context)
+   const addTab = () => {
+      const hash = `untitled${uuid().split('-')[0]}`
+      dispatch({
+         type: 'ADD_TAB',
+         payload: { title: hash, path: `/roles/${hash}`, history },
+      })
    }
+   React.useEffect(() => {
+      const tab = state.tabs.find(item => item.path === `/roles`) || {}
+      if (!Object.prototype.hasOwnProperty.call(tab, 'path')) {
+         history.push('/')
+      }
+   }, [history, state.tabs])
    const data = [
       {
          role: 'Admin',
@@ -53,10 +66,7 @@ const RolesListing = () => {
       <StyledWrapper>
          <StyledHeader>
             <Text as="h2">Roles</Text>
-            <IconButton
-               type="solid"
-               onClick={() => addTab('Role Form', 'role')}
-            >
+            <IconButton type="solid" onClick={() => addTab()}>
                <AddIcon color="#fff" size={24} />
             </IconButton>
          </StyledHeader>

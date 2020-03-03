@@ -1,7 +1,10 @@
 import React from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 
 // State
 import { Context } from '../../../store/tabs'
+
+import doesTabExists from '../../../utils/doesTabExists'
 
 // Components
 import {
@@ -37,7 +40,9 @@ import {
 import { StyledAppItem, StyledPermissions } from './styled'
 
 const RoleForm = () => {
-   const { dispatch } = React.useContext(Context)
+   const params = useParams()
+   const history = useHistory()
+   const { state, dispatch } = React.useContext(Context)
    const [isOpen, setIsOpen] = React.useState('')
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
@@ -51,6 +56,14 @@ const RoleForm = () => {
       apps: [],
    })
    const [search, setSearch] = React.useState('')
+
+   React.useEffect(() => {
+      const tab = doesTabExists(state.tabs, `/roles/${params.name}`)
+      if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
+         return setForm(form => ({ ...form, tab }))
+      }
+      return history.push('/roles')
+   }, [state.tabs, params.name, history])
 
    const [list, selected, selectOption] = useMultiList([
       {

@@ -1,7 +1,10 @@
 import React from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 
 // State
 import { Context } from '../../../store/tabs'
+
+import doesTabExists from '../../../utils/doesTabExists'
 
 // Components
 import {
@@ -35,7 +38,9 @@ import {
 import { StyledSelect, StyledAppItem, StyledDevicesList } from './styled'
 
 const UserForm = () => {
-   const { dispatch } = React.useContext(Context)
+   const params = useParams()
+   const history = useHistory()
+   const { state, dispatch } = React.useContext(Context)
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
    const [rolesTunnels, openRolesTunnel, closeRolesTunnel] = useTunnel(1)
@@ -51,6 +56,15 @@ const UserForm = () => {
    })
    const [search, setSearch] = React.useState('')
    const [deviceSearch, setDeviceSearch] = React.useState('')
+
+   React.useEffect(() => {
+      const tab = doesTabExists(state.tabs, `/users/${params.name}`)
+      if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
+         return setForm(form => ({ ...form, tab }))
+      }
+      return history.push('/users')
+   }, [state.tabs, params.name, history])
+
    const [list, selected, selectOption] = useMultiList([
       {
          id: 1,

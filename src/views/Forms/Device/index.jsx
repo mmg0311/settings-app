@@ -1,4 +1,9 @@
 import React from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+
+import { Context } from '../../../store/tabs'
+
+import doesTabExists from '../../../utils/doesTabExists'
 
 // Components
 import {
@@ -30,12 +35,25 @@ import {
 import { StyledSelectedUsers } from './styled'
 
 const DeviceForm = () => {
+   const params = useParams()
+   const history = useHistory()
+   const { state } = React.useContext(Context)
    const [usersTunnels, openUsersTunnel, closeUsersTunnel] = useTunnel(1)
    const [search, setSearch] = React.useState('')
    const [form, setForm] = React.useState({
       type: '',
       users: [],
+      stations: [],
    })
+
+   React.useEffect(() => {
+      const tab = doesTabExists(state.tabs, `/devices/${params.name}`)
+      if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
+         return setForm(form => ({ ...form, tab }))
+      }
+      return history.push('/devices')
+   }, [state.tabs, params.name, history])
+
    const [list, selected, selectOption] = useMultiList([
       { id: 1, title: 'Praveen Bisht', img: '' },
       { id: 2, title: 'Marky Mark', img: '' },
