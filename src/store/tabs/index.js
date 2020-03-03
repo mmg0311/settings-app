@@ -4,8 +4,8 @@ const Context = React.createContext()
 
 const state = {
    listings: [],
-   forms: [{ type: 'forms', title: 'Device Form', view: 'device' }],
-   current: { type: 'forms', title: 'Device Form', view: 'device' },
+   forms: [],
+   current: {},
 }
 
 const reducers = (state, { type, payload }) => {

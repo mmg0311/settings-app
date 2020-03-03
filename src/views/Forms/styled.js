@@ -25,6 +25,7 @@ export const StyledHeader = styled.div`
 
 export const StyledForm = styled.div`
    padding: 40px 0;
+   max-width: 520px;
 `
 
 export const StyledRow = styled.div`

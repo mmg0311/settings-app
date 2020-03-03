@@ -32,13 +32,14 @@ import {
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
-import { StyledSelect, StyledAppItem } from './styled'
+import { StyledSelect, StyledAppItem, StyledDevicesList } from './styled'
 
 const UserForm = () => {
    const { dispatch } = React.useContext(Context)
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
    const [rolesTunnels, openRolesTunnel, closeRolesTunnel] = useTunnel(1)
+   const [devicesTunnels, openDevicesTunnel, closeDevicesTunnel] = useTunnel(1)
    const [form, setForm] = React.useState({
       firstname: '',
       lastname: '',
@@ -46,9 +47,10 @@ const UserForm = () => {
       phoneCode: '',
       phoneNo: '',
       apps: [],
+      devices: [],
    })
    const [search, setSearch] = React.useState('')
-
+   const [deviceSearch, setDeviceSearch] = React.useState('')
    const [list, selected, selectOption] = useMultiList([
       {
          id: 1,
@@ -69,6 +71,18 @@ const UserForm = () => {
          id: 4,
          title: 'Settings App',
          icon: '',
+      },
+   ])
+   const [devicesList, selectedDevices, selectDevice] = useMultiList([
+      {
+         id: 1,
+         title: 'Weighing Scale Terminal',
+         description: 'WST-001',
+      },
+      {
+         id: 2,
+         title: 'Packaging Machine',
+         description: 'PM-02',
       },
    ])
 
@@ -178,11 +192,22 @@ const UserForm = () => {
             </StyledSection>
             <StyledSection>
                <Text as="title">Devices</Text>
+               {form.devices.length > 0 && (
+                  <StyledDevicesList>
+                     {form.devices.map(device => (
+                        <li key={device.id}>
+                           <Text as="title">{device.title}</Text>
+                           <Text as="subtitle">{device.description}</Text>
+                        </li>
+                     ))}
+                  </StyledDevicesList>
+               )}
                <ButtonTile
                   noIcon
                   size="sm"
                   type="secondary"
                   text="Select Devices"
+                  onClick={() => openDevicesTunnel(1)}
                />
             </StyledSection>
             <Tunnels tunnels={appsTunnels}>
@@ -264,6 +289,65 @@ const UserForm = () => {
                      <Text as="title">
                         Roles for role: {form.roleName || 'Untitled'}
                      </Text>
+                  </StyledTunnelMain>
+               </Tunnel>
+            </Tunnels>
+            <Tunnels tunnels={devicesTunnels}>
+               <Tunnel layer={1}>
+                  <StyledTunnelHeader>
+                     <div>
+                        <IconButton
+                           type="ghost"
+                           onClick={() => closeDevicesTunnel(1)}
+                        >
+                           <ClearIcon size={20} />
+                        </IconButton>
+                        <Text as="h2">Select devices for the user</Text>
+                     </div>
+                     <TextButton
+                        type="solid"
+                        onClick={() => {
+                           closeDevicesTunnel(1)
+                           setForm(form => ({
+                              ...form,
+                              devices: [...selectedDevices],
+                           }))
+                        }}
+                     >
+                        Add
+                     </TextButton>
+                  </StyledTunnelHeader>
+                  <StyledTunnelMain>
+                     <List>
+                        <ListSearch
+                           onChange={value => setDeviceSearch(value)}
+                           placeholder="type what you’re looking for..."
+                        />
+                        <ListOptions>
+                           {devicesList
+                              .filter(option =>
+                                 option.title
+                                    .toLowerCase()
+                                    .includes(deviceSearch)
+                              )
+                              .map(option => (
+                                 <ListItem
+                                    type="MSL2"
+                                    key={option.id}
+                                    content={{
+                                       title: option.title,
+                                       description: option.description,
+                                    }}
+                                    onClick={() =>
+                                       selectDevice('id', option.id)
+                                    }
+                                    isActive={selectedDevices.find(
+                                       item => item.id === option.id
+                                    )}
+                                 />
+                              ))}
+                        </ListOptions>
+                     </List>
                   </StyledTunnelMain>
                </Tunnel>
             </Tunnels>
