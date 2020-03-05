@@ -32,14 +32,18 @@ import {
    StyledTunnelHeader,
    StyledTunnelMain,
 } from '../styled'
-import { StyledSelectedUsers } from './styled'
+import { StyledSelectedUsers, StyledStationsList } from './styled'
 
 const DeviceForm = () => {
    const params = useParams()
    const history = useHistory()
    const { state } = React.useContext(Context)
    const [usersTunnels, openUsersTunnel, closeUsersTunnel] = useTunnel(1)
+   const [stationsTunnels, openStationsTunnel, closeStationsTunnel] = useTunnel(
+      1
+   )
    const [search, setSearch] = React.useState('')
+   const [stationSearch, setStationsSearch] = React.useState('')
    const [form, setForm] = React.useState({
       type: {},
       users: [],
@@ -58,6 +62,10 @@ const DeviceForm = () => {
       { id: 1, title: 'Praveen Bisht', img: '' },
       { id: 2, title: 'Marky Mark', img: '' },
       { id: 3, title: 'Peter Parker', img: '' },
+   ])
+   const [stations, selectedStations, selectStation] = useMultiList([
+      { id: 1, title: 'Meat', description: 'STA-001' },
+      { id: 2, title: 'Spices', description: 'STA-002' },
    ])
    const [options] = React.useState([
       { id: 1, title: 'Option1', img: 'This is option 1' },
@@ -92,13 +100,80 @@ const DeviceForm = () => {
             </StyledSection>
             <StyledSection>
                <Text as="title">Stations</Text>
+               {form.stations.length > 0 && (
+                  <StyledStationsList>
+                     {form.stations.map(station => (
+                        <li key={station.id}>
+                           <Text as="title">{station.title}</Text>
+                           <Text as="subtitle">{station.description}</Text>
+                        </li>
+                     ))}
+                  </StyledStationsList>
+               )}
                <ButtonTile
                   noIcon
                   size="sm"
                   type="secondary"
                   text="Select stations to route the device"
+                  onClick={() => openStationsTunnel(1)}
                />
             </StyledSection>
+            <Tunnels tunnels={stationsTunnels}>
+               <Tunnel layer={1}>
+                  <StyledTunnelHeader>
+                     <div>
+                        <IconButton
+                           type="ghost"
+                           onClick={() => closeStationsTunnel(1)}
+                        >
+                           <ClearIcon size={20} />
+                        </IconButton>
+                        <Text as="h2">Select devices for the user</Text>
+                     </div>
+                     <TextButton
+                        type="solid"
+                        onClick={() => {
+                           closeStationsTunnel(1)
+                           setForm({ ...form, stations: [...selectedStations] })
+                        }}
+                     >
+                        Add
+                     </TextButton>
+                  </StyledTunnelHeader>
+                  <StyledTunnelMain>
+                     <List>
+                        <ListSearch
+                           onChange={value => setStationsSearch(value)}
+                           placeholder="type what you’re looking for..."
+                        />
+                        <ListOptions>
+                           {stations
+                              .filter(option =>
+                                 option.title
+                                    .toLowerCase()
+                                    .includes(stationSearch)
+                              )
+                              .map(option => (
+                                 <ListItem
+                                    type="MSL2"
+                                    key={option.id}
+                                    content={{
+                                       title: option.title,
+                                       description: option.description,
+                                    }}
+                                    onClick={() =>
+                                       selectStation('id', option.id)
+                                    }
+                                    isActive={selectedStations.find(
+                                       item => item.id === option.id
+                                    )}
+                                 />
+                              ))}
+                        </ListOptions>
+                     </List>
+                  </StyledTunnelMain>
+               </Tunnel>
+            </Tunnels>
             <StyledSection>
                <Text as="title">Users</Text>
                {form.users?.length > 0 && (
