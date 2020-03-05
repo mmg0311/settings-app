@@ -49,17 +49,19 @@ const RolesListing = () => {
    const data = [
       {
          role: 'Admin',
-         apps: ['', '', ''],
-         users: [
-            { title: 'Jack' },
-            { title: 'Back Bones' },
-            { title: 'Stack Cue Stones' },
+         apps: [
+            { title: 'Recipe App', url: '' },
+            { title: 'Inventory App', url: '' },
+            { title: 'Ingredient App', url: '' },
          ],
       },
       {
          role: 'Operator',
-         apps: ['', ''],
-         users: [{ title: 'Stack Cue Stones' }, { title: 'Back Bones' }],
+         apps: [
+            { title: 'Inventory App', url: '' },
+            { title: 'Recipe App', url: '' },
+            { title: 'Ingredient App', url: '' },
+         ],
       },
    ]
    return (
@@ -75,7 +77,6 @@ const RolesListing = () => {
                <TableRow>
                   <TableCell>Roles</TableCell>
                   <TableCell>Apps Configured</TableCell>
-                  <TableCell>Users Assigned</TableCell>
                   <TableCell align="right">Actions</TableCell>
                </TableRow>
             </TableHead>
@@ -84,16 +85,13 @@ const RolesListing = () => {
                   <TableRow key={index}>
                      <TableCell>{row.role}</TableCell>
                      <TableCell>
-                        <StyledIconGroup>
-                           {row.apps.map((app, index) => (
-                              <StyledIcon key={index} />
-                           ))}
-                        </StyledIconGroup>
-                     </TableCell>
-                     <TableCell>
                         <AvatarGroup>
-                           {row.users.map(user => (
-                              <Avatar key={user.title} title={user.title} />
+                           {row.apps.map((app, index) => (
+                              <Avatar
+                                 url={app.url}
+                                 key={app.title}
+                                 title={app.title}
+                              />
                            ))}
                         </AvatarGroup>
                      </TableCell>

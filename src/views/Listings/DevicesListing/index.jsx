@@ -48,15 +48,18 @@ const DevicesListing = () => {
          name: 'Weighing Scale Terminal',
          stations: ['Station 1', 'Station 2'],
          users: [
-            { title: 'Jack' },
-            { title: 'Back Bones' },
-            { title: 'Stack Cue Stones' },
+            { url: '', title: 'Jack' },
+            { url: '', title: 'Back Bones' },
+            { url: '', title: 'Stack Cue Stones' },
          ],
       },
       {
          name: 'Terminal',
          stations: ['Station 2'],
-         users: [{ title: 'Stack Cue Stones' }, { title: 'Back Bones' }],
+         users: [
+            { url: '', title: 'Stack Cue Stones' },
+            { url: '', title: 'Back Bones' },
+         ],
       },
    ]
    return (
@@ -90,7 +93,11 @@ const DevicesListing = () => {
                      <TableCell>
                         <AvatarGroup>
                            {row.users.map(user => (
-                              <Avatar key={user.title} title={user.title} />
+                              <Avatar
+                                 url={user.url}
+                                 key={user.title}
+                                 title={user.title}
+                              />
                            ))}
                         </AvatarGroup>
                      </TableCell>

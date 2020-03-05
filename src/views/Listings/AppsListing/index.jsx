@@ -1,4 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+
+// State
+import { Context } from '../../../store/tabs'
 
 // Components
 import {
@@ -7,37 +11,49 @@ import {
    TableBody,
    TableRow,
    TableCell,
-   TagGroup,
-   Tag,
    AvatarGroup,
    Avatar,
    Text,
 } from '@dailykit/ui'
 
 // Styled
-import { StyledWrapper, StyledIcon, StyledHeader } from '../styled'
+import { StyledWrapper, StyledHeader } from '../styled'
 
 const AppsListing = () => {
+   const history = useHistory()
+   const { state } = React.useContext(Context)
+   React.useEffect(() => {
+      const tab = state.tabs.find(item => item.path === `/apps`) || {}
+      if (!Object.prototype.hasOwnProperty.call(tab, 'path')) {
+         history.push('/')
+      }
+   }, [history, state.tabs])
    const data = [
       {
-         roles: ['Admin', 'Chef'],
+         title: 'Ingredient',
+         url: '',
          users: [
-            { title: 'Jack' },
-            { title: 'Back Bones' },
-            { title: 'Stack Cue Stones' },
+            { url: '', title: 'Jack' },
+            { url: '', title: 'Back Bones' },
+            { url: '', title: 'Stack Cue Stones' },
          ],
       },
       {
-         roles: ['Admin', 'Chef', 'Operator'],
+         title: 'Recipe',
+         url: '',
          users: [
-            { title: 'Back Bones' },
-            { title: 'Stack Cue Stones' },
-            { title: 'Jack' },
+            { url: '', title: 'Back Bones' },
+            { url: '', title: 'Stack Cue Stones' },
+            { url: '', title: 'Jack' },
          ],
       },
       {
-         roles: ['Admin', 'Chef', 'Moderator'],
-         users: [{ title: 'Back Bones' }, { title: 'Jack' }],
+         title: 'Inventory',
+         url: '',
+         users: [
+            { url: '', title: 'Back Bones' },
+            { url: '', title: 'Jack' },
+         ],
       },
    ]
    return (
@@ -49,7 +65,6 @@ const AppsListing = () => {
             <TableHead>
                <TableRow>
                   <TableCell>Apps</TableCell>
-                  <TableCell>Roles Managed</TableCell>
                   <TableCell>Users Assigned</TableCell>
                </TableRow>
             </TableHead>
@@ -57,19 +72,23 @@ const AppsListing = () => {
                {data.map((row, index) => (
                   <TableRow key={index}>
                      <TableCell>
-                        <StyledIcon />
-                     </TableCell>
-                     <TableCell>
-                        <TagGroup>
-                           {row.roles.map(role => (
-                              <Tag key={role}>{role}</Tag>
-                           ))}
-                        </TagGroup>
+                        <AvatarGroup>
+                           <Avatar
+                              withName
+                              type="round"
+                              url={row.url}
+                              title={row.title}
+                           />
+                        </AvatarGroup>
                      </TableCell>
                      <TableCell>
                         <AvatarGroup>
                            {row.users.map(user => (
-                              <Avatar key={user.title} title={user.title} />
+                              <Avatar
+                                 key={user.title}
+                                 title={user.title}
+                                 url={user.url}
+                              />
                            ))}
                         </AvatarGroup>
                      </TableCell>

@@ -22,16 +22,9 @@ export const StyledHeader = styled.div`
    justify-content: space-between;
 `
 
-export const StyledIconGroup = styled.div`
-   display: flex;
-   > div {
-      margin-right: 4px;
-   }
-`
-
-export const StyledIcon = styled.div`
-   width: 32px;
-   height: 32px;
-   border-radius: 4px;
-   background: rgba(40, 193, 247, 0.48);
+export const StyledBadge = styled.span`
+   border: 1px solid #555b6e;
+   height: 24px;
+   border-radius: 24px;
+   padding: 0 4px;
 `

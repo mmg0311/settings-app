@@ -15,18 +15,12 @@ import {
    TableRow,
    TableCell,
    Avatar,
-   TagGroup,
-   Tag,
+   AvatarGroup,
    Text,
 } from '@dailykit/ui'
 
 // Styled
-import {
-   StyledWrapper,
-   StyledHeader,
-   StyledIconGroup,
-   StyledIcon,
-} from '../styled'
+import { StyledWrapper, StyledHeader, StyledBadge } from '../styled'
 
 // Icons
 import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
@@ -50,19 +44,25 @@ const UsersListing = () => {
    const data = [
       {
          user: {
-            name: 'Marky Mark',
-            imageUrl: '',
+            title: 'Marky Mark',
+            url: '',
          },
-         apps: ['', '', ''],
-         roles: ['Admin', 'Chef'],
+         devices: 4,
+         apps: [
+            { title: 'Inventory App', url: '' },
+            { title: 'Recipe App', url: '' },
+            { title: 'Ingredient App', url: '' },
+         ],
       },
       {
          user: {
-            name: 'Alex Tod',
-            imageUrl: '',
+            title: 'Alex Tod',
+            url: '',
          },
-         apps: ['', ''],
-         roles: ['Admin', 'Moderator'],
+         apps: [
+            { title: 'Recipe App', url: '' },
+            { title: 'Ingredient App', url: '' },
+         ],
       },
    ]
    return (
@@ -78,7 +78,7 @@ const UsersListing = () => {
                <TableRow>
                   <TableCell>Users</TableCell>
                   <TableCell>Apps Configured</TableCell>
-                  <TableCell>Roles</TableCell>
+                  <TableCell>Devices Assigned</TableCell>
                   <TableCell align="right">Actions</TableCell>
                </TableRow>
             </TableHead>
@@ -86,21 +86,29 @@ const UsersListing = () => {
                {data.map((row, index) => (
                   <TableRow key={index}>
                      <TableCell>
-                        <Avatar title={row.user.name} withName />
+                        <Avatar
+                           withName
+                           url={row.user.url}
+                           title={row.user.title}
+                        />
                      </TableCell>
                      <TableCell>
-                        <StyledIconGroup>
+                        <AvatarGroup>
                            {row.apps.map((app, index) => (
-                              <StyledIcon key={index} />
+                              <Avatar
+                                 url={app.url}
+                                 key={app.title}
+                                 title={app.title}
+                              />
                            ))}
-                        </StyledIconGroup>
+                        </AvatarGroup>
                      </TableCell>
                      <TableCell>
-                        <TagGroup>
-                           {row.roles.map(role => (
-                              <Tag key={role}>{role}</Tag>
-                           ))}
-                        </TagGroup>
+                        {row.devices ? (
+                           <StyledBadge>{row.devices}</StyledBadge>
+                        ) : (
+                           'NA'
+                        )}
                      </TableCell>
                      <TableCell align="right">
                         <ButtonGroup align="right">
