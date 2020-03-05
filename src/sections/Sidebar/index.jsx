@@ -38,6 +38,9 @@ const Sidebar = ({ visible, toggleSidebar }) => {
             <StyledListItem onClick={() => addTab('Apps', '/apps')}>
                Apps
             </StyledListItem>
+            <StyledListItem onClick={() => addTab('Stations', '/stations')}>
+               Station
+            </StyledListItem>
          </StyledList>
       </StyledSidebar>
    )

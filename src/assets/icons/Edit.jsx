@@ -12,7 +12,7 @@ const EditIcon = ({ size = 16, color = '#fff' }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
    >
-      <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
+      <polygon points="16 3 21 8 8 21 3 21 3 16 16 3" />
    </svg>
 )
 

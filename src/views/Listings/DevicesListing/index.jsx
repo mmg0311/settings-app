@@ -2,9 +2,6 @@ import React from 'react'
 import { v4 as uuid } from 'uuid'
 import { useHistory } from 'react-router-dom'
 
-// State
-import { Context } from '../../../store/tabs'
-
 // Components
 import {
    ButtonGroup,
@@ -20,6 +17,9 @@ import {
    Tag,
    Text,
 } from '@dailykit/ui'
+
+// State
+import { Context } from '../../../store/tabs'
 
 // Styled
 import { StyledWrapper, StyledHeader } from '../styled'
@@ -80,12 +80,12 @@ const DevicesListing = () => {
                </TableRow>
             </TableHead>
             <TableBody>
-               {data.map((row, index) => (
-                  <TableRow key={index}>
+               {data.map(row => (
+                  <TableRow key={row.name}>
                      <TableCell>{row.name}</TableCell>
                      <TableCell>
                         <TagGroup>
-                           {row.stations.map((station, index) => (
+                           {row.stations.map(station => (
                               <Tag key={station}>{station}</Tag>
                            ))}
                         </TagGroup>

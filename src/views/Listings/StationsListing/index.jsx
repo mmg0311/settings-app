@@ -2,9 +2,6 @@ import React from 'react'
 import { v4 as uuid } from 'uuid'
 import { useHistory } from 'react-router-dom'
 
-// State
-import { Context } from '../../../store/tabs'
-
 // Components
 import {
    Table,
@@ -16,6 +13,9 @@ import {
    IconButton,
    Text,
 } from '@dailykit/ui'
+
+// State
+import { Context } from '../../../store/tabs'
 
 // Styled
 import { StyledWrapper, StyledHeader, StyledBadge } from '../styled'
@@ -75,8 +75,8 @@ const StationsListing = () => {
                </TableRow>
             </TableHead>
             <TableBody>
-               {data.map((row, index) => (
-                  <TableRow key={index}>
+               {data.map(row => (
+                  <TableRow key={row.title}>
                      <TableCell>{row.title}</TableCell>
                      <TableCell>{row.id}</TableCell>
                      <TableCell>{row.type}</TableCell>

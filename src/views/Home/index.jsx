@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+import { DashboardTile, Text } from '@dailykit/ui'
+
 // State
 import { Context } from '../../store/tabs'
-
-import { DashboardTile, Text } from '@dailykit/ui'
 
 import { StyledHome, StyledCardList } from './styled'
 

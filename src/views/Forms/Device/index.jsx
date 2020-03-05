@@ -1,10 +1,6 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
-import { Context } from '../../../store/tabs'
-
-import doesTabExists from '../../../utils/doesTabExists'
-
 // Components
 import {
    TextButton,
@@ -24,6 +20,10 @@ import {
    Avatar,
 } from '@dailykit/ui'
 
+import { Context } from '../../../store/tabs'
+
+import doesTabExists from '../../../utils/doesTabExists'
+
 // Styled
 import {
    StyledWrapper,
@@ -41,7 +41,7 @@ const DeviceForm = () => {
    const [usersTunnels, openUsersTunnel, closeUsersTunnel] = useTunnel(1)
    const [search, setSearch] = React.useState('')
    const [form, setForm] = React.useState({
-      type: '',
+      type: {},
       users: [],
       stations: [],
    })
@@ -67,7 +67,7 @@ const DeviceForm = () => {
       { id: 5, title: 'Option5', img: 'This is option 5' },
       { id: 6, title: 'Option6', img: 'This is option 6' },
    ])
-   const selectedOption = option => console.log(option)
+   const selectedOption = option => setForm({ ...form, type: option })
    return (
       <StyledWrapper>
          <StyledHeader>

@@ -2,9 +2,6 @@ import React from 'react'
 import { v4 as uuid } from 'uuid'
 import { useHistory } from 'react-router-dom'
 
-// State
-import { Context } from '../../../store/tabs'
-
 // Components
 import {
    ButtonGroup,
@@ -19,13 +16,11 @@ import {
    Text,
 } from '@dailykit/ui'
 
+// State
+import { Context } from '../../../store/tabs'
+
 // Styled
-import {
-   StyledWrapper,
-   StyledHeader,
-   StyledIconGroup,
-   StyledIcon,
-} from '../styled'
+import { StyledWrapper, StyledHeader } from '../styled'
 
 // Icons
 import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
@@ -81,12 +76,12 @@ const RolesListing = () => {
                </TableRow>
             </TableHead>
             <TableBody>
-               {data.map((row, index) => (
-                  <TableRow key={index}>
+               {data.map(row => (
+                  <TableRow key={row.role}>
                      <TableCell>{row.role}</TableCell>
                      <TableCell>
                         <AvatarGroup>
-                           {row.apps.map((app, index) => (
+                           {row.apps.map(app => (
                               <Avatar
                                  url={app.url}
                                  key={app.title}

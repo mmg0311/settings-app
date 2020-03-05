@@ -2,9 +2,6 @@ import React from 'react'
 import { v4 as uuid } from 'uuid'
 import { useHistory } from 'react-router-dom'
 
-// State
-import { Context } from '../../../store/tabs'
-
 // Components
 import {
    ButtonGroup,
@@ -18,6 +15,9 @@ import {
    AvatarGroup,
    Text,
 } from '@dailykit/ui'
+
+// State
+import { Context } from '../../../store/tabs'
 
 // Styled
 import { StyledWrapper, StyledHeader, StyledBadge } from '../styled'
@@ -43,6 +43,7 @@ const UsersListing = () => {
    }, [history, state.tabs])
    const data = [
       {
+         id: 1,
          user: {
             title: 'Marky Mark',
             url: '',
@@ -55,6 +56,7 @@ const UsersListing = () => {
          ],
       },
       {
+         id: 2,
          user: {
             title: 'Alex Tod',
             url: '',
@@ -83,8 +85,8 @@ const UsersListing = () => {
                </TableRow>
             </TableHead>
             <TableBody>
-               {data.map((row, index) => (
-                  <TableRow key={index}>
+               {data.map(row => (
+                  <TableRow key={row.id}>
                      <TableCell>
                         <Avatar
                            withName
@@ -94,7 +96,7 @@ const UsersListing = () => {
                      </TableCell>
                      <TableCell>
                         <AvatarGroup>
-                           {row.apps.map((app, index) => (
+                           {row.apps.map(app => (
                               <Avatar
                                  url={app.url}
                                  key={app.title}

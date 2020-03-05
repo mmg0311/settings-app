@@ -1,9 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-// State
-import { Context } from '../../../store/tabs'
-
 // Components
 import {
    Table,
@@ -15,6 +12,9 @@ import {
    Avatar,
    Text,
 } from '@dailykit/ui'
+
+// State
+import { Context } from '../../../store/tabs'
 
 // Styled
 import { StyledWrapper, StyledHeader } from '../styled'
@@ -69,8 +69,8 @@ const AppsListing = () => {
                </TableRow>
             </TableHead>
             <TableBody>
-               {data.map((row, index) => (
-                  <TableRow key={index}>
+               {data.map(row => (
+                  <TableRow key={row.title}>
                      <TableCell>
                         <AvatarGroup>
                            <Avatar

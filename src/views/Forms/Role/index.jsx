@@ -1,11 +1,6 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
-// State
-import { Context } from '../../../store/tabs'
-
-import doesTabExists from '../../../utils/doesTabExists'
-
 // Components
 import {
    TextButton,
@@ -28,6 +23,11 @@ import {
    Toggle,
    Text,
 } from '@dailykit/ui'
+
+// State
+import { Context } from '../../../store/tabs'
+
+import doesTabExists from '../../../utils/doesTabExists'
 
 // Styled
 import {
@@ -126,10 +126,7 @@ const RoleForm = () => {
 
    const handleChange = e => {
       const { name, value } = e.target
-      setForm(form => ({
-         ...form,
-         [name]: value,
-      }))
+      setForm({ ...form, [name]: value })
    }
    return (
       <StyledWrapper>
@@ -158,7 +155,15 @@ const RoleForm = () => {
                               title={option.title}
                            />
                            <span
+                              tabIndex="0"
+                              role="button"
                               onClick={() =>
+                                 setIsOpen(value =>
+                                    value === option.title ? '' : option.title
+                                 )
+                              }
+                              onKeyPress={e =>
+                                 e.charCode === 32 &&
                                  setIsOpen(value =>
                                     value === option.title ? '' : option.title
                                  )
@@ -223,7 +228,7 @@ const RoleForm = () => {
                      type="solid"
                      onClick={() => {
                         closeAppsTunnel(1)
-                        setForm(form => ({ ...form, apps: [...selected] }))
+                        setForm({ ...form, apps: [...selected] })
                      }}
                   >
                      Add
