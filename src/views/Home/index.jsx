@@ -45,6 +45,12 @@ const Home = () => {
                conf="All active"
                onClick={() => addTab('Devices', '/devices')}
             />
+            <DashboardTile
+               title="Stations"
+               count="4"
+               conf="All active"
+               onClick={() => addTab('Stations', '/stations')}
+            />
          </StyledCardList>
       </StyledHome>
    )

@@ -4,6 +4,7 @@ import {
    RolesListing,
    UsersListing,
    DevicesListing,
+   StationsListing,
 } from './Listings'
 
 import { UserForm, RoleForm, DeviceForm } from './Forms'
@@ -14,6 +15,7 @@ export {
    RolesListing,
    UsersListing,
    DevicesListing,
+   StationsListing,
    UserForm,
    RoleForm,
    DeviceForm,
