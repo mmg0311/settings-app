@@ -7,7 +7,7 @@ import {
    StationsListing,
 } from './Listings'
 
-import { UserForm, RoleForm, DeviceForm } from './Forms'
+import { UserForm, RoleForm, DeviceForm, StationForm } from './Forms'
 
 export {
    Home,
@@ -19,4 +19,5 @@ export {
    UserForm,
    RoleForm,
    DeviceForm,
+   StationForm,
 }
