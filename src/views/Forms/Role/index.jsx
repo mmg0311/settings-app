@@ -42,7 +42,7 @@ import { StyledAppItem, StyledPermissions } from './styled'
 const RoleForm = () => {
    const params = useParams()
    const history = useHistory()
-   const { state, dispatch } = React.useContext(Context)
+   const { state } = React.useContext(Context)
    const [isOpen, setIsOpen] = React.useState('')
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
@@ -60,7 +60,7 @@ const RoleForm = () => {
    React.useEffect(() => {
       const tab = doesTabExists(state.tabs, `/roles/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, tab }))
+         return setForm(form => ({ ...form, ...tab }))
       }
       return history.push('/roles')
    }, [state.tabs, params.name, history])
@@ -111,18 +111,6 @@ const RoleForm = () => {
          ],
       },
    ])
-
-   React.useEffect(() => {
-      dispatch({
-         type: 'SET_FORM_DATA',
-         payload: {
-            data: form,
-            view: 'role',
-            type: 'forms',
-            title: 'Role Form',
-         },
-      })
-   }, [dispatch, form])
 
    const handleChange = e => {
       const { name, value } = e.target

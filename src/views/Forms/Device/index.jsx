@@ -53,7 +53,7 @@ const DeviceForm = () => {
    React.useEffect(() => {
       const tab = doesTabExists(state.tabs, `/devices/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, tab }))
+         return setForm(form => ({ ...form, ...tab }))
       }
       return history.push('/devices')
    }, [state.tabs, params.name, history])

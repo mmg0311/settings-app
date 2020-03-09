@@ -39,7 +39,7 @@ import { StyledDevicesList } from './styled'
 const StationForm = () => {
    const params = useParams()
    const history = useHistory()
-   const { state, dispatch } = React.useContext(Context)
+   const { state } = React.useContext(Context)
    const [devicesTunnels, openDevicesTunnel, closeDevicesTunnel] = useTunnel(1)
    const [form, setForm] = React.useState({
       name: '',
@@ -51,7 +51,7 @@ const StationForm = () => {
    React.useEffect(() => {
       const tab = doesTabExists(state.tabs, `/stations/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, tab }))
+         return setForm(form => ({ ...form, ...tab }))
       }
       return history.push('/stations')
    }, [state.tabs, params.name, history])
@@ -73,18 +73,6 @@ const StationForm = () => {
          description: 'LP-001',
       },
    ])
-
-   React.useEffect(() => {
-      dispatch({
-         type: 'SET_FORM_DATA',
-         payload: {
-            data: form,
-            view: 'user',
-            type: 'forms',
-            title: 'User Form',
-         },
-      })
-   }, [dispatch, form])
 
    const handleChange = e => {
       const { name, value } = e.target

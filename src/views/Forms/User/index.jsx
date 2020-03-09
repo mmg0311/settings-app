@@ -40,7 +40,7 @@ import { StyledSelect, StyledAppItem, StyledDevicesList } from './styled'
 const UserForm = () => {
    const params = useParams()
    const history = useHistory()
-   const { state, dispatch } = React.useContext(Context)
+   const { state } = React.useContext(Context)
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
    const [rolesTunnels, openRolesTunnel, closeRolesTunnel] = useTunnel(1)
@@ -60,7 +60,7 @@ const UserForm = () => {
    React.useEffect(() => {
       const tab = doesTabExists(state.tabs, `/users/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, tab }))
+         return setForm(form => ({ ...form, ...tab }))
       }
       return history.push('/users')
    }, [state.tabs, params.name, history])
@@ -99,18 +99,6 @@ const UserForm = () => {
          description: 'PM-02',
       },
    ])
-
-   React.useEffect(() => {
-      dispatch({
-         type: 'SET_FORM_DATA',
-         payload: {
-            data: form,
-            view: 'user',
-            type: 'forms',
-            title: 'User Form',
-         },
-      })
-   }, [dispatch, form])
 
    const handleChange = e => {
       const { name, value } = e.target
