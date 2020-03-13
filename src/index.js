@@ -7,6 +7,7 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { ApolloLink } from 'apollo-link'
+import { setContext } from 'apollo-link-context'
 
 import App from './App'
 
@@ -17,6 +18,15 @@ import './index.css'
 
 const client = new ApolloClient({
    link: ApolloLink.from([
+      setContext((_, { headers }) => {
+         const token = localStorage.getItem('token')
+         return {
+            headers: {
+               ...headers,
+               authorization: token ? `Bearer ${token}` : '',
+            },
+         }
+      }),
       new HttpLink({
          uri: process.env.REACT_APP_GRAPHQL_URI,
       }),

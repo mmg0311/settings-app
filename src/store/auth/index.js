@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
             permission => permission.role === roles[0]
          )
          setPermissions(permissionsList)
+         localStorage.setItem('token', keycloak.token)
       }
    }
 
