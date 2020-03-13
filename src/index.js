@@ -10,6 +10,7 @@ import { ApolloLink } from 'apollo-link'
 
 import App from './App'
 
+import { AuthProvider } from './store/auth'
 import { TabProvider } from './store/tabs'
 
 import './index.css'
@@ -25,9 +26,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
    <ApolloProvider client={client}>
-      <TabProvider>
-         <App />
-      </TabProvider>
+      <AuthProvider>
+         <TabProvider>
+            <App />
+         </TabProvider>
+      </AuthProvider>
    </ApolloProvider>,
    document.getElementById('root')
 )
