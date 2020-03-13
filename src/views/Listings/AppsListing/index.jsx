@@ -14,20 +14,20 @@ import {
 } from '@dailykit/ui'
 
 // State
-import { Context } from '../../../store/tabs'
+import { useTabs } from '../../../store/tabs'
 
 // Styled
 import { StyledWrapper, StyledHeader } from '../styled'
 
 const AppsListing = () => {
    const history = useHistory()
-   const { state } = React.useContext(Context)
+   const { tabs } = useTabs()
    React.useEffect(() => {
-      const tab = state.tabs.find(item => item.path === `/apps`) || {}
+      const tab = tabs.find(item => item.path === `/apps`) || {}
       if (!Object.prototype.hasOwnProperty.call(tab, 'path')) {
          history.push('/')
       }
-   }, [history, state.tabs])
+   }, [history, tabs])
    const data = [
       {
          title: 'Ingredient',

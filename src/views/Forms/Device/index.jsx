@@ -20,9 +20,7 @@ import {
    Avatar,
 } from '@dailykit/ui'
 
-import { Context } from '../../../store/tabs'
-
-import doesTabExists from '../../../utils/doesTabExists'
+import { useTabs } from '../../../store/tabs'
 
 // Styled
 import {
@@ -37,7 +35,7 @@ import { StyledSelectedUsers, StyledStationsList } from './styled'
 const DeviceForm = () => {
    const params = useParams()
    const history = useHistory()
-   const { state } = React.useContext(Context)
+   const { doesTabExists } = useTabs()
    const [usersTunnels, openUsersTunnel, closeUsersTunnel] = useTunnel(1)
    const [stationsTunnels, openStationsTunnel, closeStationsTunnel] = useTunnel(
       1
@@ -51,12 +49,13 @@ const DeviceForm = () => {
    })
 
    React.useEffect(() => {
-      const tab = doesTabExists(state.tabs, `/devices/${params.name}`)
+      const tab = doesTabExists(`/devices/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, ...tab }))
+         setForm(form => ({ ...form, ...tab }))
+      } else {
+         history.push('/devices')
       }
-      return history.push('/devices')
-   }, [state.tabs, params.name, history])
+   }, [params.name, history])
 
    const [list, selected, selectOption] = useMultiList([
       { id: 1, title: 'Praveen Bisht', img: '' },
@@ -231,6 +230,7 @@ const DeviceForm = () => {
                                  .map(option => (
                                     <ListItem
                                        type="MSL111"
+                                       key={option.id}
                                        content={{
                                           img: option.img,
                                           title: option.title,

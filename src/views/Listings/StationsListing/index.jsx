@@ -15,7 +15,7 @@ import {
 } from '@dailykit/ui'
 
 // State
-import { Context } from '../../../store/tabs'
+import { useTabs } from '../../../store/tabs'
 
 // Styled
 import { StyledWrapper, StyledHeader, StyledBadge } from '../styled'
@@ -25,20 +25,19 @@ import { EditIcon, DeleteIcon, AddIcon } from '../../../assets/icons'
 
 const StationsListing = () => {
    const history = useHistory()
-   const { state, dispatch } = React.useContext(Context)
-   const addTab = () => {
+   const { tabs, addTab } = useTabs()
+
+   const createTab = () => {
       const hash = `untitled${uuid().split('-')[0]}`
-      dispatch({
-         type: 'ADD_TAB',
-         payload: { title: hash, path: `/stations/${hash}`, history },
-      })
+      addTab(hash, `/stations/${hash}`)
    }
+
    React.useEffect(() => {
-      const tab = state.tabs.find(item => item.path === `/stations`) || {}
+      const tab = tabs.find(item => item.path === `/stations`) || {}
       if (!Object.prototype.hasOwnProperty.call(tab, 'path')) {
          history.push('/')
       }
-   }, [history, state.tabs])
+   }, [history, tabs])
    const data = [
       {
          id: 'STA-P2',
@@ -59,7 +58,7 @@ const StationsListing = () => {
       <StyledWrapper>
          <StyledHeader>
             <Text as="h2">Stations</Text>
-            <IconButton type="solid" onClick={() => addTab()}>
+            <IconButton type="solid" onClick={() => createTab()}>
                <AddIcon color="#fff" size={24} />
             </IconButton>
          </StyledHeader>

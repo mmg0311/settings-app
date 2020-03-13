@@ -25,9 +25,7 @@ import {
 } from '@dailykit/ui'
 
 // State
-import { Context } from '../../../store/tabs'
-
-import doesTabExists from '../../../utils/doesTabExists'
+import { useTabs } from '../../../store/tabs'
 
 // Styled
 import {
@@ -42,7 +40,7 @@ import { StyledAppItem, StyledPermissions } from './styled'
 const RoleForm = () => {
    const params = useParams()
    const history = useHistory()
-   const { state } = React.useContext(Context)
+   const { doesTabExists } = useTabs()
    const [isOpen, setIsOpen] = React.useState('')
    const [selectedApp, setSelectedApp] = React.useState({})
    const [appsTunnels, openAppsTunnel, closeAppsTunnel] = useTunnel(1)
@@ -58,12 +56,13 @@ const RoleForm = () => {
    const [search, setSearch] = React.useState('')
 
    React.useEffect(() => {
-      const tab = doesTabExists(state.tabs, `/roles/${params.name}`)
+      const tab = doesTabExists(`/roles/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, ...tab }))
+         setForm(form => ({ ...form, ...tab }))
+      } else {
+         history.push('/roles')
       }
-      return history.push('/roles')
-   }, [state.tabs, params.name, history])
+   }, [params.name, history])
 
    const [list, selected, selectOption] = useMultiList([
       {

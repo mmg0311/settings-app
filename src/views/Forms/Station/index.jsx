@@ -21,9 +21,7 @@ import {
 } from '@dailykit/ui'
 
 // State
-import { Context } from '../../../store/tabs'
-
-import doesTabExists from '../../../utils/doesTabExists'
+import { useTabs } from '../../../store/tabs'
 
 // Styled
 import {
@@ -39,7 +37,7 @@ import { StyledDevicesList } from './styled'
 const StationForm = () => {
    const params = useParams()
    const history = useHistory()
-   const { state } = React.useContext(Context)
+   const { doesTabExists } = useTabs()
    const [devicesTunnels, openDevicesTunnel, closeDevicesTunnel] = useTunnel(1)
    const [form, setForm] = React.useState({
       name: '',
@@ -49,12 +47,13 @@ const StationForm = () => {
    const [devicesSearch, setDevicesSearch] = React.useState('')
 
    React.useEffect(() => {
-      const tab = doesTabExists(state.tabs, `/stations/${params.name}`)
+      const tab = doesTabExists(`/stations/${params.name}`)
       if (Object.prototype.hasOwnProperty.call(tab, 'path')) {
-         return setForm(form => ({ ...form, ...tab }))
+         setForm(form => ({ ...form, ...tab }))
+      } else {
+         history.push('/stations')
       }
-      return history.push('/stations')
-   }, [state.tabs, params.name, history])
+   }, [params.name, history])
 
    const [devicesList, selectedDevices, selectDevice] = useMultiList([
       {

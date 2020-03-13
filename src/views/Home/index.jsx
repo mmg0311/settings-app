@@ -1,22 +1,14 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 
 import { DashboardTile, Text } from '@dailykit/ui'
 
 // State
-import { Context } from '../../store/tabs'
+import { useTabs } from '../../store/tabs'
 
 import { StyledHome, StyledCardList } from './styled'
 
 const Home = () => {
-   const history = useHistory()
-   const { dispatch } = React.useContext(Context)
-   const addTab = (title, path) => {
-      dispatch({
-         type: 'ADD_TAB',
-         payload: { title, path, history },
-      })
-   }
+   const { addTab } = useTabs()
    return (
       <StyledHome>
          <Text as="h1">Settings App</Text>
