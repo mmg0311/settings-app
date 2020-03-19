@@ -1,8 +1,6 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const StyledWrapper = styled.div`
-   margin: 0 auto;
-   max-width: 1280px;
    h1 {
       color: #555b6e;
       font-size: 20px;
@@ -18,7 +16,9 @@ export const StyledWrapper = styled.div`
 export const StyledHeader = styled.div`
    height: 80px;
    display: flex;
+   margin: 0 auto;
    align-items: center;
+   width: calc(100vw - 40px);
    justify-content: space-between;
    border-bottom: 1px solid #d8d8d8;
 `
@@ -46,9 +46,14 @@ export const StyledHeading = styled.h3`
    font-weight: 400;
 `
 
-export const StyledSection = styled.div`
-   margin-top: 48px;
-`
+export const StyledSection = styled.div(
+   ({ w, m, p, bg }) => css`
+      margin: ${m ? m : '0'};
+      padding: ${p ? p : '0'};
+      width: ${w ? w : '100%'};
+      background: ${bg ? bg : 'transparent'};
+   `
+)
 
 export const StyledTunnelHeader = styled.div`
    padding: 24px;

@@ -8,18 +8,10 @@ export const StyledSelectedUsers = styled.div`
    }
 `
 
-export const StyledStationsList = styled.ul`
-   margin: 12px 0;
-   flex-wrap: wrap;
-   display: inline-flex;
-   li {
-      height: 64px;
-      display: flex;
-      padding: 0 16px;
-      list-style: none;
-      margin-right: 16px;
-      background: #f3f3f3;
-      flex-direction: column;
-      justify-content: center;
+export const StyledPanelHeader = styled.header`
+   h2 {
+      color: #555b6e;
+      font-size: 24px;
+      font-weight: 500;
    }
 `
