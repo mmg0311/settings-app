@@ -1,22 +1,22 @@
 {
    "sections": {
       "SideBar": {
-         "Users": "Users",
-         "Devices": "Devices",
-         "Roles": "Roles",
-         "Apps": "Apps",
-         "Station": "Station"
+         "Users": "Utilisateurs",
+         "Devices": "Appareils",
+         "Roles": "Rôles",
+         "Apps": "Gestionnaire applications",
+         "Station": "Stationner"
       }
    },
    "views": {
       "Forms": {
          "Device": {
-            "Enter_the_device_name": "Enter the device name",
-            "Launch": "Launch",
-            "Users": "Users",
-            "Configure Apps": "Configure Apps",
-            "Add": "Add",
-            "type_what_you’re_looking_for...": "type what you’re looking for..."
+            "Enter_the_device_name": "Entrez le nom du périphérique",
+            "Launch": "Démarrer",
+            "Users": "Utilisateurs",
+            "Configure Apps": "Configurer les applis",
+            "Add": "Ajouter",
+            "type_what_you’re_looking_for...": "tapez ce que vous cherchez..."
          }
       }
    }
