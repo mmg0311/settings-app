@@ -1,0 +1,23 @@
+{
+   "sections": {
+      "SideBar": {
+         "Users": "Users",
+         "Devices": "Devices",
+         "Roles": "Roles",
+         "Apps": "Apps",
+         "Station": "Station"
+      }
+   },
+   "views": {
+      "Forms": {
+         "Device": {
+            "Enter_the_device_name": "Enter the device name",
+            "Launch": "Launch",
+            "Users": "Users",
+            "Configure Apps": "Configure Apps",
+            "Add": "Add",
+            "type_what_you’re_looking_for...": "type what you’re looking for..."
+         }
+      }
+   }
+}

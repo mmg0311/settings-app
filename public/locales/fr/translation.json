@@ -1,0 +1,23 @@
+{
+   "sections": {
+      "SideBar": {
+         "Users": "Utilisateurs",
+         "Devices": "Appareils",
+         "Roles": "Rôles",
+         "Apps": "Gestionnaire applications",
+         "Station": "Stationner"
+      }
+   },
+   "views": {
+      "Forms": {
+         "Device": {
+            "Enter_the_device_name": "Entrez le nom du périphérique",
+            "Launch": "Démarrer",
+            "Users": "Utilisateurs",
+            "Configure Apps": "Configurer les applis",
+            "Add": "Ajouter",
+            "type_what_you’re_looking_for...": "tapez ce que vous cherchez..."
+         }
+      }
+   }
+}
