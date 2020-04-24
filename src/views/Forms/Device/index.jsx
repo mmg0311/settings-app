@@ -1,6 +1,10 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
+//translate
+import { useTranslation } from "react-i18next";
+import '../../../i18n'
+
 // Components
 import {
    TextButton,
@@ -41,6 +45,7 @@ import {
 import { StyledSelectedUsers, StyledPanelHeader } from './styled'
 
 const DeviceForm = () => {
+   const { t } = useTranslation();
    const params = useParams()
    const history = useHistory()
    const { doesTabExists } = useTabs()
@@ -94,12 +99,12 @@ const DeviceForm = () => {
                style={{ width: '320px' }}
                value={form.name || ''}
                onChange={e => setForm({ ...form, name: e.target.value })}
-               placeholder="Enter the device name"
+               placeholder={t("views.Forms.Device.Enter_the_device_name")}
             />
-            <TextButton type="solid">Launch</TextButton>
+            <TextButton type="solid">{t("Launch")}</TextButton>
          </StyledHeader>
          <StyledSection w="480px" m="32px 20px">
-            <Text as="title">Users</Text>
+            <Text as="title">{t('views.Forms.Device.Users')}</Text>
             {form.users?.length > 0 && (
                <StyledSelectedUsers>
                   {form.users.map(user => (
@@ -129,7 +134,7 @@ const DeviceForm = () => {
                         >
                            <ClearIcon size={20} />
                         </IconButton>
-                        <Text as="h2">Configure Apps</Text>
+                        <Text as="h2">{t('views.Forms.Device.Configure Apps')}</Text>
                      </div>
                      <TextButton
                         type="solid"
@@ -138,14 +143,14 @@ const DeviceForm = () => {
                            setForm({ ...form, users: selectedUsers })
                         }}
                      >
-                        Add
+                        {t('views.Forms.Device.Add')}
                      </TextButton>
                   </StyledTunnelHeader>
                   <StyledTunnelMain>
                      <List>
                         <ListSearch
                            onChange={value => setSearch(value)}
-                           placeholder="type what you’re looking for..."
+                           placeholder={t("views.Forms.Device.type_what_you’re_looking_for...")}
                         />
                         <ListOptions>
                            {usersList

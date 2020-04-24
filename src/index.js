@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 
 // Apollo Client Imports
@@ -35,12 +35,14 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-   <ApolloProvider client={client}>
-      <AuthProvider>
-         <TabProvider>
-            <App />
-         </TabProvider>
-      </AuthProvider>
-   </ApolloProvider>,
+   <Suspense fallback={(<h1>loading.....</h1>)}>
+      <ApolloProvider client={client}>
+         <AuthProvider>
+            <TabProvider>
+               <App />
+            </TabProvider>
+         </AuthProvider>
+      </ApolloProvider>
+   </Suspense>,
    document.getElementById('root')
 )
