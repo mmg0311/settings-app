@@ -1,6 +1,7 @@
 {
    "sections": {
       "SideBar": {
+         "Listings": "Annonces",
          "Users": "Utilisateurs",
          "Devices": "Appareils",
          "Roles": "Rôles",
@@ -11,12 +12,12 @@
    "views": {
       "Forms": {
          "Device": {
-            "Enter_the_device_name": "Entrez le nom du périphérique",
+            "Enter the device name": "Entrez le nom du périphérique",
             "Launch": "Démarrer",
             "Users": "Utilisateurs",
             "Configure Apps": "Configurer les applis",
             "Add": "Ajouter",
-            "type_what_you’re_looking_for...": "tapez ce que vous cherchez..."
+            "type what you’re looking for": "tapez ce que vous cherchez"
          }
       }
    }

@@ -99,9 +99,9 @@ const DeviceForm = () => {
                style={{ width: '320px' }}
                value={form.name || ''}
                onChange={e => setForm({ ...form, name: e.target.value })}
-               placeholder={t("views.Forms.Device.Enter_the_device_name")}
+               placeholder={t("views.Forms.Device.Enter the device name")}
             />
-            <TextButton type="solid">{t("Launch")}</TextButton>
+            <TextButton type="solid">{t("views.Forms.Device.Launch")}</TextButton>
          </StyledHeader>
          <StyledSection w="480px" m="32px 20px">
             <Text as="title">{t('views.Forms.Device.Users')}</Text>
@@ -121,7 +121,7 @@ const DeviceForm = () => {
                noIcon
                size="sm"
                type="secondary"
-               text="Select and assign users"
+               text={t("views.Forms.Device.Select and assign users")}
                onClick={() => openUsersTunnel(1)}
             />
             <Tunnels tunnels={usersTunnels}>
@@ -150,7 +150,7 @@ const DeviceForm = () => {
                      <List>
                         <ListSearch
                            onChange={value => setSearch(value)}
-                           placeholder={t("views.Forms.Device.type_what_you’re_looking_for...")}
+                           placeholder={t("views.Forms.Device.type what you’re looking for")}
                         />
                         <ListOptions>
                            {usersList

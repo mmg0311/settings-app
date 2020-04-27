@@ -1,6 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+//translate
+import { useTranslation } from "react-i18next";
+import '../../i18n'
+
 // Components
 import { Tabs } from '../../components'
 
@@ -11,7 +15,8 @@ import { StyledHeader, StyledMenu, StyledNav } from './styled'
 import { MenuIcon, LeftIcon, RightIcon } from '../../assets/icons'
 
 const Header = ({ toggleSidebar }) => {
-   const history = useHistory()
+   const history = useHistory();
+   const { t } = useTranslation();
    return (
       <StyledHeader>
          <StyledMenu
@@ -28,14 +33,14 @@ const Header = ({ toggleSidebar }) => {
          <StyledNav>
             <button
                type="button"
-               title="Go Back"
+               title={t("sections.Header.GoBack")}
                onClick={() => history.goBack()}
             >
                <LeftIcon color="#000" size="22" />
             </button>
             <button
                type="button"
-               title="Go Foreward"
+               title={t("sections.Header.GoForward")}
                onClick={() => history.goForward()}
             >
                <RightIcon color="#000" size="22" />

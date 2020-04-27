@@ -14,18 +14,17 @@ import {
    StyledListItem,
    StyledHeading,
 } from './styled'
+import i18next from 'i18next';
 
 const Sidebar = ({ visible, toggleSidebar }) => {
    const { addTab } = useTabs()
    const { t } = useTranslation();
-
-   //   function handleClick(lang) {
-   //     i18next.changeLanguage(lang);
-   //   }
-
+   // const handleLang = () => {
+   //    localStorage.getItem("language") && i18next.changeLanguage(localStorage.getItem("language"))
+   // }
    return (
-      <StyledSidebar visible={visible} onClick={() => toggleSidebar(false)}>
-         <StyledHeading>{t('SideBar.Listings')}</StyledHeading>
+      < StyledSidebar visible={visible} onClick={() => toggleSidebar(false)}>
+         <StyledHeading>{t('sections.SideBar.Listings')}</StyledHeading>
          <StyledList>
             <StyledListItem onClick={() => addTab('Users', '/users')}>
                {t('sections.SideBar.Users')}
@@ -42,8 +41,11 @@ const Sidebar = ({ visible, toggleSidebar }) => {
             <StyledListItem onClick={() => addTab('Stations', '/stations')}>
                {t('sections.SideBar.Station')}
             </StyledListItem>
+            <StyledListItem onClick={() => addTab('Languages', '/languages')}>
+               Languages
+            </StyledListItem>
          </StyledList>
-      </StyledSidebar>
+      </StyledSidebar >
    )
 }
 

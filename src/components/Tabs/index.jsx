@@ -1,6 +1,10 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
+//translate
+import { useTranslation } from "react-i18next";
+import '../../i18n'
+
 // State
 import { useTabs } from '../../store/tabs'
 
@@ -13,6 +17,7 @@ import { CloseIcon } from '../../assets/icons'
 const Tabs = () => {
    const location = useLocation()
    const { tabs, switchTab, removeTab } = useTabs()
+   const { t } = useTranslation();
    return (
       <StyledTabs>
          {tabs.map((tab, index) => (
@@ -26,7 +31,7 @@ const Tabs = () => {
                   <div
                      role="button"
                      tabIndex={0}
-                     title="Close Tab"
+                     title={t("components.Tabs.CloseTab")}
                      onClick={e => removeTab(e, { tab, index })}
                      onKeyPress={e =>
                         e.charCode === 32 && removeTab(e, { tab, index })

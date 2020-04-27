@@ -1,6 +1,16 @@
 {
+   "components": {
+      "Tabs": {
+         "CloseTab": "Close Tab"
+      }
+   },
    "sections": {
+      "Header": {
+         "Go Back": "Go Back",
+         "Go Forward": "Go Forward"
+      },
       "SideBar": {
+         "Listings": "Listings",
          "Users": "Users",
          "Devices": "Devices",
          "Roles": "Roles",
@@ -11,12 +21,13 @@
    "views": {
       "Forms": {
          "Device": {
-            "Enter_the_device_name": "Enter the device name",
+            "Enter the device name": "Enter the device name",
             "Launch": "Launch",
             "Users": "Users",
             "Configure Apps": "Configure Apps",
             "Add": "Add",
-            "type_what_you’re_looking_for...": "type what you’re looking for..."
+            "type what you’re looking for": "type what you’re looking for",
+            "Select and assign users": "Select and assign users",
          }
       }
    }

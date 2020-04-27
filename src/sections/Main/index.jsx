@@ -8,6 +8,7 @@ import {
    RolesListing,
    UsersListing,
    DevicesListing,
+   Languages,
    UserForm,
    RoleForm,
    DeviceForm,
@@ -16,6 +17,7 @@ import {
 } from '../../views'
 
 const Main = () => {
+
    return (
       <main>
          <Switch>
@@ -48,6 +50,9 @@ const Main = () => {
             </Route>
             <Route path="/stations/:name">
                <StationForm />
+            </Route>
+            <Route path="/languages" exact>
+               <Languages />
             </Route>
          </Switch>
       </main>
